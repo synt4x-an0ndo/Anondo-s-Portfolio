@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Family Status — GM Anondo (G.M. Millat)</title>
-<meta name="description" content="Family Status and Family Information of GM Anondo. Details about his parents and siblings."/>
+<meta name="description" content="Family of Gm Anondo (G.M. Millat): his father is Mohammad Anwar Hossain Gazi, a senior mathematics teacher at Jib Nagar M.L High School, and his mother is Sultana Razia, and his younger sisters are Nowshin Tabassum and Muntaha Tabassum."/>
 <meta name="author" content="G.M. Millat (GM Anondo)"/>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -422,6 +422,14 @@ main{flex:1;display:flex;flex-direction:column}
 @media(min-width:640px){
   .family-grid{grid-template-columns:1fr 1fr}
 }
+
+/* ── QUICK FACTS ── */
+.facts-card{border:1px solid var(--border);border-radius:16px;padding:10px 22px;background:var(--muted)}
+.fact-row{display:flex;gap:18px;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--border);font-size:14.5px}
+.fact-row:last-child{border-bottom:none}
+.fact-k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-foreground);padding-top:3px;flex:none}
+.fact-v{text-align:right}
+.fact-sub{display:block;font-size:12px;color:var(--muted-foreground);margin-top:3px}
 </style>
 </head>
 <body>
@@ -460,7 +468,26 @@ main{flex:1;display:flex;flex-direction:column}
         </div>
       </section>
 
-      <!-- ── FAMILY MEMBERS ── -->
+            <!-- ── QUICK FACTS ── -->
+      <section class="section-wrap fade-up">
+        <div class="section-inner">
+          <div class="fade-up-sm">
+            <div class="sec-header p2">
+              <p class="sec-label">Quick Facts</p>
+              <h2 class="sec-title">Parents &amp; family of Gm Anondo</h2>
+              <p class="sec-desc">The short answer first — exactly who is who in my family.</p>
+            </div>
+          </div>
+          <div class="facts-card p2 fade-up-sm">
+            <div class="fact-row"><span class="fact-k">Father</span><span class="fact-v">Mohammad Anwar Hossain Gazi<span class="fact-sub">Senior Teacher (Mathematics) · Jib Nagar M.L High School</span></span></div>
+            <div class="fact-row"><span class="fact-k">Mother</span><span class="fact-v">Sultana Razia</span></div>
+            <div class="fact-row"><span class="fact-k">Sisters</span><span class="fact-v">Nowshin Tabassum and Muntaha Tabassum</span></div>
+            <div class="fact-row"><span class="fact-k">Son</span><span class="fact-v">Gm Anondo (G.M. Millat)</span></div>
+          </div>
+        </div>
+      </section>
+
+<!-- ── FAMILY MEMBERS ── -->
       <section class="section-wrap fade-up">
         <div class="section-inner">
           <div class="fade-up-sm">
@@ -546,6 +573,84 @@ main{flex:1;display:flex;flex-direction:column}
 
   <div class="hatch-right"></div>
 </div><!-- .page-grid -->
+
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://gmanondo.me/#person",
+      "name": "G.M. Millat",
+      "alternateName": [
+        "GM Anondo",
+        "Gm Anondo"
+      ],
+      "url": "https://gmanondo.me/",
+      "parent": [
+        {
+          "@type": "Person",
+          "name": "Mohammad Anwar Hossain Gazi",
+          "jobTitle": "Senior Teacher (Mathematics)",
+          "worksFor": {
+            "@type": "School",
+            "name": "Jib Nagar M.L High School"
+          }
+        },
+        {
+          "@type": "Person",
+          "name": "Sultana Razia"
+        }
+      ],
+      "sibling": [
+        {
+          "@type": "Person",
+          "name": "Nowshin Tabassum"
+        },
+        {
+          "@type": "Person",
+          "name": "Muntaha Tabassum"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who is the father of Gm Anondo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The father of Gm Anondo (G.M. Millat) is Mohammad Anwar Hossain Gazi, a senior teacher (Mathematics) at Jib Nagar M.L High School."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is the mother of Gm Anondo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The mother of Gm Anondo (G.M. Millat) is Sultana Razia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who are the sisters of Gm Anondo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gm Anondo (G.M. Millat) has two younger sisters: Nowshin Tabassum and Muntaha Tabassum."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does Gm Anondo's father do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mohammad Anwar Hossain Gazi, the father of Gm Anondo (G.M. Millat), is a senior teacher of Mathematics at Jib Nagar M.L High School."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
 
 <script>
 // Scroll-triggered fade-in
