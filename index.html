@@ -1081,6 +1081,13 @@ main{flex:1;display:flex;flex-direction:column}
   .connect-cell:nth-last-child(-n+2){border-bottom:1px solid var(--border)}
   .connect-cell:last-child{border-bottom:0}
 }
+
+/* Education: stack date under the name on phones so the title is not squeezed */
+@media(max-width:640px){
+  .edu-item{flex-direction:column;gap:6px}
+  .edu-left{width:100%}
+  .edu-date{margin-left:52px}
+}
 </style>
 </head>
 <body>
