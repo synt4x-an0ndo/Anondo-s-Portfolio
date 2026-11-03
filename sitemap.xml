@@ -2,21 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://gmanondo.me/</loc>
+    <lastmod>2026-11-03</lastmod>
     <image:image>
-      <image:loc>https://gmanondo.me/anondo.jpg</image:loc>
+      <image:loc>https://gmanondo.me/g-m-millat-anondo-website-developer.jpg</image:loc>
       <image:title>G.M. Millat (GM Anondo) - Website Developer</image:title>
-      <image:caption>G.M. Millat, also known as GM Anondo, Frontend Developer and CSE researcher from Bangladesh.</image:caption>
+      <image:caption>G.M. Millat, also known as GM Anondo, Website Developer and CSE researcher from Bangladesh.</image:caption>
     </image:image>
+  </url>
+  <url>
+    <loc>https://gmanondo.me/the-raw-bros</loc>
+    <lastmod>2026-11-03</lastmod>
+  </url>
+  <url>
+    <loc>https://gmanondo.me/parents</loc>
+    <lastmod>2026-11-03</lastmod>
     <image:image>
-      <image:loc>https://gmanondo.me/anondo-2.jpeg</image:loc>
-      <image:title>G.M. Millat (GM Anondo) portrait</image:title>
-      <image:caption>Portrait of G.M. Millat, also known as GM Anondo.</image:caption>
+      <image:loc>https://gmanondo.me/father.jpeg</image:loc>
+      <image:title>Md. Anwar Hossain Gazi, father of GM Anondo (G.M. Millat)</image:title>
     </image:image>
-  </url>
-  <url>
-    <loc>https://gmanondo.me/the-raw-bros.html</loc>
-  </url>
-  <url>
-    <loc>https://gmanondo.me/parents.html</loc>
   </url>
 </urlset>
