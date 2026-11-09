@@ -6,10 +6,22 @@
 <title>Page not found — GM Anondo</title>
 <meta name="robots" content="noindex"/>
 <link rel="icon" href="/favicon-v2.png" type="image/png"/>
-<style>body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#0a0a0a;color:#e8e8e8;font-family:system-ui,sans-serif;padding:16px;text-align:center}a{color:inherit}</style>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/site.css"/>
+<style>
+main{min-height:100vh;display:flex;flex-direction:column;justify-content:center;gap:20px}
+.code{font-family:var(--mono);font-size:13px;color:var(--muted)}
+h1{font-size:clamp(40px,7vw,72px);font-weight:600;letter-spacing:-.05em;line-height:1}
+p{color:var(--fg-2);max-width:44ch}
+</style>
 </head>
 <body>
-<h1>Page not found</h1>
-<p><a href="/">Back to GM Anondo's portfolio</a></p>
+<main class="wrap">
+  <span class="code">404</span>
+  <h1>Page not found</h1>
+  <p>The page you're looking for doesn't exist or has moved.</p>
+  <div><a href="/" class="btn btn-primary">Back to GM Anondo's portfolio</a></div>
+</main>
 </body>
 </html>
