@@ -269,570 +269,1764 @@
 }
 </script>
 
-<script>
-(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}document.documentElement.classList.add('js');})();
-</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/brands.min.css"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css"/>
-<link rel="stylesheet" href="site.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 <style>
-/* ── Hero ── */
-.hero{padding:clamp(48px,8vw,104px) 0 clamp(56px,7vw,88px)}
-.hero-grid{display:grid;grid-template-columns:1fr;gap:48px}
-@media (min-width:920px){.hero-grid{grid-template-columns:minmax(0,1fr) 300px;gap:72px;align-items:start}.portrait{margin-top:58px}}
-@media (max-width:919px){.hero-grid{gap:28px}.hero .portrait{order:-1;width:104px}.hero .portrait-frame{aspect-ratio:1;border-radius:12px}.hero .portrait figcaption{display:none}}
-.hero-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;font-size:14px;color:var(--muted);margin-bottom:32px}
-.status{display:inline-flex;align-items:center;gap:10px;color:var(--fg-2)}
-.hero-name{font-size:clamp(44px,8.4vw,96px);font-weight:600;letter-spacing:-.055em;line-height:.95}
-.hero-name .aka{display:inline-block;color:var(--muted);font-weight:400;letter-spacing:-.04em}
-.hero-role{font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:22px;line-height:1.7}
-.hero-lead{font-size:clamp(20px,2.4vw,27px);line-height:1.35;letter-spacing:-.022em;margin-top:28px;max-width:32ch}
-.hero-lead a{color:var(--fg)}
-.hero-bio{color:var(--fg-2);font-size:16px;line-height:1.75;margin-top:20px;max-width:64ch}
-.hero-ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
-.portrait{margin:0;max-width:300px}
-.portrait-frame{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--chip);aspect-ratio:4/5}
-.portrait-frame img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
-.portrait figcaption{display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:12px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-/* ── Proof strip ── */
-.facts{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line)}
-@media (min-width:860px){.facts{grid-template-columns:repeat(4,1fr)}}
-.fact{padding:24px 20px 28px 0}
-.fact + .fact{padding-left:20px;border-left:1px solid var(--line)}
-@media (max-width:859px){
-  .fact:nth-child(3){padding-left:0;border-left:0}
-  .fact:nth-child(n+3){border-top:1px solid var(--line)}
+:root{
+  --background:#0a0a0a;
+  --foreground:#e8e8e8;
+  --muted-foreground:#888;
+  --border:#262626;
+  --muted:#1a1a1a;
+  --accent:#1f1f1f;
+  --pattern-fg:rgba(255,255,255,0.06);
+  --primary:#e8e8e8;
+  --primary-fg:#0a0a0a;
 }
-.fact-value{font-size:clamp(20px,2.2vw,24px);font-weight:600;letter-spacing:-.03em;line-height:1.2}
-.fact-label{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.5}
 
-/* ── Work ── */
-.feature{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);overflow:hidden;box-shadow:var(--shadow)}
-.feature-media{background:var(--chip);padding:clamp(16px,3vw,28px) clamp(16px,3vw,28px) 0;border-bottom:1px solid var(--line)}
-.browser{border:1px solid var(--line-strong);border-bottom:0;border-radius:8px 8px 0 0;overflow:hidden;background:var(--bg-elev)}
-.browser-bar{display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid var(--line)}
-.browser-bar i{width:9px;height:9px;border-radius:50%;background:var(--line-strong)}
-.browser-bar span{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-left:10px}
-.browser img{width:100%;height:auto;aspect-ratio:1280/640;object-fit:cover;object-position:top}
-.feature-body{display:grid;gap:28px;padding:clamp(20px,3vw,32px)}
-@media (min-width:760px){.feature-body{grid-template-columns:minmax(0,1fr) 220px;gap:40px}}
-.proj-kicker{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-.proj-name{font-size:clamp(22px,2.6vw,28px);font-weight:600;letter-spacing:-.03em;line-height:1.15}
-.proj-tagline{color:var(--muted);font-size:15px;margin-top:4px}
-.proj-desc{color:var(--fg-2);font-size:15.5px;margin-top:14px;line-height:1.7}
-.proj-links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:18px}
-.meta-list{display:grid;gap:18px;align-content:start}
-.meta-list dt{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px}
-.meta-list dd{font-size:14.5px;color:var(--fg-2)}
+html{scroll-behavior:smooth}
 
-.cards{display:grid;gap:16px;margin-top:16px}
-@media (min-width:760px){.cards{grid-template-columns:1fr 1fr}}
-.card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);padding:clamp(20px,2.6vw,28px)}
-.card .proj-name{font-size:22px}
-.card .proj-desc{font-size:15px}
-.card .tags{margin-top:18px}
-.card .proj-links{margin-top:auto;padding-top:20px}
-
-.sub-head{display:flex;justify-content:space-between;align-items:baseline;margin:56px 0 4px;font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.rows{list-style:none}
-.row{
-  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 24px;align-items:center;
-  padding:20px 0;border-bottom:1px solid var(--line);transition:padding .2s;
+body{
+  background:var(--background);
+  color:var(--foreground);
+  font-family:'Space Grotesk',sans-serif;
+  font-size:15px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
 }
-.row-name{font-size:17px;font-weight:600;letter-spacing:-.015em}
-.row-desc{color:var(--muted);font-size:14.5px;margin-top:2px;line-height:1.55}
-.row-right{display:flex;align-items:center;gap:20px}
-.row-stack{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
-.row svg{width:18px;height:18px;color:var(--muted);transition:transform .2s,color .2s;flex:none}
-.row:hover svg{transform:translate(2px,-2px);color:var(--accent)}
-.row:hover .row-name{color:var(--accent)}
-@media (max-width:640px){.row-stack{display:none}}
 
-/* ── Research ── */
-.pubs{list-style:none;border-top:1px solid var(--line)}
-.pub{display:grid;grid-template-columns:minmax(0,1fr);gap:16px 40px;padding:28px 0;border-bottom:1px solid var(--line)}
-@media (min-width:700px){.pub{grid-template-columns:minmax(0,1fr) 120px}}
-.pub-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:13.5px;color:var(--muted);margin-bottom:10px}
-.pub-title{font-size:18px;font-weight:600;letter-spacing:-.018em;line-height:1.4}
-.pub-desc{color:var(--fg-2);font-size:15px;margin-top:8px}
-.pub .proj-links{margin-top:14px}
-.pub-metric{text-align:left}
-@media (min-width:700px){.pub-metric{text-align:right}}
-.pub-metric b{display:block;font-size:30px;font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
-.pub-metric span{display:block;font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.4}
+a{color:inherit;text-decoration:none}
 
-/* ── Timeline rows (experience, education, recognition) ── */
-.tl{list-style:none;border-top:1px solid var(--line)}
-.tl-row{display:grid;grid-template-columns:1fr;gap:6px 32px;padding:26px 0;border-bottom:1px solid var(--line)}
-@media (min-width:700px){.tl-row{grid-template-columns:170px minmax(0,1fr)}}
-.tl-date{font-family:var(--mono);font-size:12.5px;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
-.tl-date .now{display:inline-flex;align-items:center;gap:8px;color:var(--ok)}
-.tl-title{font-size:18px;font-weight:600;letter-spacing:-.018em;line-height:1.35}
-.tl-org{color:var(--muted);font-size:14.5px;margin-top:2px}
-.tl-desc{color:var(--fg-2);font-size:15px;margin-top:10px;max-width:68ch}
-.tl-row .tags{margin-top:14px}
-.tl-row .proj-links{margin-top:12px}
+/* ── OUTER GRID (3-col with hatched sides) ── */
+.page-grid{
+  position:relative;
+  display:grid;
+  min-height:100vh;
+  width:100%;
+  grid-template-columns:1fr min(50rem,calc(100% - 3rem)) 1fr;
+}
 
-/* ── Skills ── */
-.skills{border-top:1px solid var(--line)}
-.skill-row{display:grid;grid-template-columns:1fr;gap:4px 32px;padding:20px 0;border-bottom:1px solid var(--line)}
-@media (min-width:700px){.skill-row{grid-template-columns:170px minmax(0,1fr)}}
-.skill-row dt{font-size:14px;color:var(--muted);padding-top:1px}
-.skill-row dd{font-size:15.5px;color:var(--fg);line-height:1.7}
-.skill-row dd span{display:inline-block}
-.skill-row dd span:not(:last-child)::after{content:"/";color:var(--line-strong);margin:0 10px}
+.hatch-left{
+  grid-column:1;
+  grid-row:1/-1;
+  border-right:1px dashed var(--pattern-fg);
+  background-image:repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 4px,
+    var(--pattern-fg) 4px,
+    var(--pattern-fg) 5px
+  );
+}
+.hatch-right{
+  grid-column:3;
+  grid-row:1/-1;
+  border-left:1px dashed var(--pattern-fg);
+  background-image:repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 4px,
+    var(--pattern-fg) 4px,
+    var(--pattern-fg) 5px
+  );
+}
 
-/* ── Contact ── */
-.contact{padding:clamp(72px,10vw,128px) 0}
-.contact-title{font-size:clamp(36px,6.4vw,72px);font-weight:600;letter-spacing:-.05em;line-height:1;max-width:14ch}
-.contact-text{color:var(--fg-2);font-size:17px;margin-top:20px;max-width:52ch}
-.email-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-top:36px}
-.email-big{font-size:clamp(20px,3vw,30px);font-weight:500;letter-spacing:-.025em;border-bottom:1px solid var(--line-strong);padding-bottom:4px;transition:border-color .15s,color .15s;word-break:break-all}
-.email-big:hover{border-color:var(--accent);color:var(--accent)}
-.copy-btn{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border:1px solid var(--line-strong);border-radius:7px;font-size:13px;color:var(--muted);transition:color .15s,border-color .15s}
-.copy-btn:hover{color:var(--fg);border-color:var(--fg)}
-.copy-btn svg{width:14px;height:14px}
-.channels{display:grid;grid-template-columns:1fr;column-gap:40px;margin-top:56px;border-top:1px solid var(--line)}
-@media (min-width:640px){.channels{grid-template-columns:1fr 1fr}}
-@media (min-width:960px){.channels{grid-template-columns:repeat(3,1fr)}}
-.channel{display:flex;align-items:center;gap:14px;padding:20px 4px;border-bottom:1px solid var(--line);transition:color .15s}
-.channel-icon{width:36px;height:36px;border-radius:8px;border:1px solid var(--line);display:grid;place-items:center;color:var(--fg-2);flex:none;font-size:15px}
-.channel-icon svg{width:16px;height:16px}
-.channel-text{min-width:0;flex:1}
-.channel-name{display:block;font-size:15px;font-weight:500}
-.channel-handle{display:block;font-family:var(--mono);font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.channel > svg{width:16px;height:16px;color:var(--muted);transition:transform .2s,color .2s;flex:none}
-.channel:hover .channel-name{color:var(--accent)}
-.channel:hover > svg{transform:translate(2px,-2px);color:var(--accent)}
+.page-col{
+  grid-column:2;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+
+/* ── HEADER / NAV ── */
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  justify-content:center;
+  background:rgba(10,10,10,0.85);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;
+  transition:border-color .2s;
+}
+header.scrolled{border-bottom-color:var(--border)}
+
+.header-inner{
+  display:flex;
+  align-items:center;
+  height:56px;
+  width:100%;
+  max-width:50rem;
+  justify-content:space-between;
+  gap:12px;
+  padding:0 16px;
+}
+
+.logo{
+  flex-shrink:0;
+  font-size:15px;
+  font-weight:500;
+  letter-spacing:-.02em;
+}
+.logo:hover{opacity:.8}
+
+nav{display:flex;align-items:center;gap:2px;flex-shrink:0}
+
+.nav-link{
+  display:flex;
+  align-items:center;
+  height:32px;
+  border-radius:9999px;
+  padding:0 12px;
+  font-size:13px;
+  color:var(--muted-foreground);
+  transition:color .15s;
+}
+.nav-link:hover{color:var(--foreground)}
+
+.nav-gh{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:32px;
+  height:32px;
+  border-radius:9999px;
+  color:var(--muted-foreground);
+  transition:color .15s;
+}
+.nav-gh:hover{color:var(--foreground)}
+
+/* ── SECTION WRAPPER (with top/bottom 1px lines) ── */
+.section-wrap{
+  position:relative;
+  isolation:isolate;
+  width:100%;
+  overflow:visible;
+}
+.section-wrap::before,
+.section-wrap::after{
+  content:'';
+  pointer-events:none;
+  position:absolute;
+  left:0;right:0;
+  height:1px;
+  background:var(--pattern-fg);
+}
+.section-wrap::before{top:0}
+.section-wrap::after{bottom:0}
+
+.section-inner{
+  position:relative;
+  margin:0 auto;
+  width:100%;
+  max-width:50rem;
+  display:flex;
+  flex-direction:column;
+  gap:32px;
+}
+
+/* ── HERO ── */
+.hero-section .section-inner{padding:0}
+
+.hero-body{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding:8px;
+}
+@media(min-width:768px){
+  .hero-body{flex-direction:row}
+}
+
+.hero-avatar{
+  position:relative;
+  width:232px;
+  height:112px;
+  flex-shrink:0;
+  align-self:flex-start;
+  display:flex;
+  gap:8px;
+}
+@media(min-width:768px){
+  .hero-avatar{width:264px;height:128px;margin-top:10px}
+}
+
+.hero-avatar-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:6px;
+  border:1px solid var(--border);
+  box-shadow:0 4px 16px rgba(0,0,0,.4);
+}
+
+.hero-avatar-placeholder{
+  width:112px;height:112px;
+  flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:6px;
+  border:1px solid var(--border);
+  background:linear-gradient(135deg,#1c1c1c,#222);
+  font-family:'JetBrains Mono',monospace;
+  font-size:32px;
+  font-weight:600;
+  color:var(--muted-foreground);
+  letter-spacing:-.04em;
+}
+@media(min-width:768px){
+  .hero-avatar-placeholder{width:128px;height:128px}
+}
+
+.hero-text{display:flex;flex-direction:column;gap:8px}
+
+.hero-name{
+  font-size:clamp(1.75rem,5vw,2.25rem);
+  font-weight:500;
+  letter-spacing:-.04em;
+  line-height:1.1;
+}
+.hero-also-known{
+  font-size:clamp(1rem,3vw,1.35rem);
+  font-weight:400;
+  color:var(--muted-foreground);
+  letter-spacing:-.02em;
+}
+
+.hero-subtitle{
+  font-size:13px;
+  letter-spacing:.2em;
+  color:var(--muted-foreground);
+  font-family:'JetBrains Mono',monospace;
+}
+
+.hero-founder{
+  font-size:15px;
+  font-weight:500;
+  color:var(--foreground);
+}
+.hero-founder a{
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+.hero-bio{
+  font-size:15px;
+  line-height:1.75;
+  color:var(--muted-foreground);
+}
+
+.hero-ctas{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px;
+  padding-top:4px;
+}
+
+/* ── BUTTONS ── */
+.btn{
+  position:relative;
+  display:inline-flex;
+  flex-shrink:0;
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  white-space:nowrap;
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:-.01em;
+  outline:none;
+  transition:all .15s ease-out;
+  border-radius:6px;
+  height:36px;
+  padding:0 16px;
+  font-family:'Space Grotesk',sans-serif;
+  text-decoration:none;
+}
+.btn:active{transform:scale(.97)}
+
+.btn-primary{
+  background:var(--primary);
+  color:var(--primary-fg);
+  border:1px solid rgba(255,255,255,.08);
+  background-image:linear-gradient(to bottom,rgba(255,255,255,.14),transparent,rgba(0,0,0,.10));
+  box-shadow:0 1px 2px -.5px rgba(0,0,0,.18),0 3px 8px -2px rgba(0,0,0,.10);
+}
+.btn-primary:hover{
+  background:#ccc;
+  box-shadow:0 2px 4px -.5px rgba(0,0,0,.22),0 6px 18px -3px rgba(0,0,0,.14);
+}
+
+.btn-outline{
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--foreground);
+  box-shadow:0 1px 2px rgba(0,0,0,.04);
+  height:32px;
+  gap:6px;
+  padding:0 12px;
+}
+.btn-outline:hover{
+  border-color:rgba(255,255,255,.25);
+  background:var(--accent);
+}
+
+kbd{
+  pointer-events:none;
+  display:inline-flex;
+  height:20px;
+  min-width:20px;
+  align-items:center;
+  justify-content:center;
+  border-radius:3px;
+  background:var(--muted);
+  padding:0 4px;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:11px;
+  font-weight:500;
+  color:var(--muted-foreground);
+}
+.btn-primary kbd{background:rgba(0,0,0,.15);color:rgba(0,0,0,.6)}
+
+/* ── SECTION HEADER ── */
+.sec-header{display:flex;flex-direction:column;gap:8px;padding:8px}
+
+.sec-label{
+  font-size:13px;
+  letter-spacing:.2em;
+  color:var(--muted-foreground);
+  font-family:'JetBrains Mono',monospace;
+}
+
+.sec-title{
+  font-size:clamp(1.5rem,4vw,2.25rem);
+  font-weight:500;
+  letter-spacing:-.04em;
+  color:var(--foreground);
+}
+
+.sec-desc{
+  font-size:15px;
+  line-height:1.75;
+  color:var(--muted-foreground);
+}
+
+/* ── ACCORDION PROJECTS ── */
+.projects-list{display:flex;flex-direction:column;gap:24px}
+
+.project-item{position:relative}
+
+.project-line{
+  position:absolute;
+  left:20px;
+  top:40px;
+  bottom:-24px;
+  width:1px;
+  background:rgba(255,255,255,.12);
+  transform:scaleY(0);
+  transform-origin:top;
+  transition:transform .4s ease;
+}
+.project-item.open .project-line{transform:scaleY(1)}
+.project-item:last-child .project-line{display:none}
+
+.project-trigger{
+  display:flex;
+  width:100%;
+  cursor:pointer;
+  align-items:center;
+  justify-content:space-between;
+  text-align:left;
+  transition:opacity .15s,transform .15s;
+  background:none;
+  border:none;
+  color:inherit;
+  padding:0;
+}
+.project-trigger:active{transform:scale(.995);opacity:.8}
+
+.project-trigger-left{display:flex;align-items:flex-start;gap:12px}
+
+.project-icon{
+  width:40px;height:40px;flex-shrink:0;
+  border-radius:6px;
+  border:1px solid var(--border);
+  background:var(--muted);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;
+  color:var(--muted-foreground);
+}
+
+.project-info{display:flex;flex-direction:column;gap:4px}
+
+.project-name{
+  font-size:1.1rem;
+  font-weight:500;
+  line-height:1.2;
+  letter-spacing:-.02em;
+}
+@media(min-width:768px){.project-name{font-size:1.25rem}}
+
+.project-tagline{font-size:13px;color:var(--muted-foreground)}
+
+.project-chevron{
+  flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:9999px;
+  padding:6px;
+  margin:-6px;
+  color:var(--muted-foreground);
+  transition:background .2s,color .2s;
+}
+.project-trigger:hover .project-chevron{background:rgba(255,255,255,.07);color:var(--foreground)}
+.project-item.open .project-chevron{background:rgba(255,255,255,.05);color:var(--foreground)}
+
+.project-chevron svg{
+  width:20px;height:20px;
+  transition:transform .2s;
+}
+.project-item.open .project-chevron svg{transform:rotate(180deg)}
+
+.project-body{
+  display:none;
+  padding:12px 0 0 52px;
+}
+.project-item.open .project-body{display:block}
+
+.project-body-inner{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.project-desc{font-size:14px;color:var(--muted-foreground);line-height:1.6}
+
+.project-tags{display:flex;flex-wrap:wrap;gap:6px}
+
+.tag{
+  display:inline-flex;align-items:center;
+  height:24px;
+  border-radius:4px;
+  border:1px solid var(--border);
+  background:var(--muted);
+  padding:0 8px;
+  font-size:11px;
+  color:var(--muted-foreground);
+  font-family:'JetBrains Mono',monospace;
+}
+
+.project-links{display:flex;flex-wrap:wrap;gap:8px}
+
+.project-link{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:13px;
+  color:var(--muted-foreground);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:4px 10px;
+  transition:border-color .15s,color .15s;
+}
+.project-link:hover{border-color:rgba(255,255,255,.25);color:var(--foreground)}
+.project-link svg{width:13px;height:13px}
+
+/* ── TIMELINE (Experience / Education) ── */
+.timeline{display:flex;flex-direction:column;gap:32px}
+
+.tl-item{position:relative}
+
+.tl-line{
+  position:absolute;
+  left:20px;
+  top:40px;
+  bottom:-32px;
+  width:1px;
+  background:rgba(255,255,255,.12);
+  transform:scaleY(0);
+  transform-origin:top;
+  animation:scaleIn .4s ease forwards;
+  animation-delay:.1s;
+}
+.tl-item:last-child .tl-line{display:none}
+
+@keyframes scaleIn{to{transform:scaleY(1)}}
+
+.tl-trigger{
+  display:flex;
+  width:100%;
+  cursor:pointer;
+  align-items:center;
+  justify-content:space-between;
+  text-align:left;
+  background:none;border:none;color:inherit;padding:0;
+  transition:opacity .15s,transform .15s;
+}
+.tl-trigger:active{transform:scale(.995);opacity:.8}
+
+.tl-trigger-main{
+  display:flex;
+  width:100%;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.tl-trigger-left{display:flex;align-items:flex-start;gap:12px}
+
+.tl-logo{
+  width:40px;height:40px;flex-shrink:0;
+  border-radius:6px;
+  border:1px solid var(--border);
+  background:var(--muted);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;
+  color:var(--muted-foreground);
+}
+
+.tl-info{display:flex;flex-direction:column;gap:4px}
+
+.tl-name-row{display:flex;align-items:center;gap:8px}
+
+.tl-name{
+  font-size:1.1rem;font-weight:500;letter-spacing:-.02em;
+}
+@media(min-width:768px){.tl-name{font-size:1.25rem}}
+
+.tl-active{
+  position:relative;
+  display:inline-flex;
+  width:10px;height:10px;
+  align-items:center;justify-content:center;
+}
+.tl-active::before{
+  content:'';
+  position:absolute;
+  width:100%;height:100%;
+  border-radius:50%;
+  background:#84cc16;
+}
+.tl-active::after{
+  content:'';
+  position:relative;
+  width:8px;height:8px;
+  border-radius:50%;
+  background:#84cc16;
+}
+
+.tl-role{
+  font-size:13px;
+  color:var(--muted-foreground);
+}
+
+.tl-dot{
+  margin:0 6px;
+  color:rgba(136,136,136,.4);
+}
+
+.tl-date{
+  flex-shrink:0;
+  align-self:center;
+  white-space:nowrap;
+  font-size:11px;
+  color:rgba(136,136,136,.7);
+  font-variant-numeric:tabular-nums;
+  font-family:'JetBrains Mono',monospace;
+}
+
+.tl-chevron{
+  flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:9999px;padding:6px;margin:-6px;
+  color:var(--muted-foreground);
+  transition:background .2s,color .2s;
+}
+.tl-trigger:hover .tl-chevron{background:rgba(255,255,255,.07);color:var(--foreground)}
+.tl-item.open .tl-chevron{background:rgba(255,255,255,.05);color:var(--foreground)}
+.tl-chevron svg{width:20px;height:20px;transition:transform .2s}
+.tl-item.open .tl-chevron svg{transform:rotate(180deg)}
+
+.tl-body{
+  display:none;
+  padding:12px 0 0 52px;
+}
+.tl-item.open .tl-body{display:block}
+
+.tl-body-desc{font-size:14px;color:var(--muted-foreground);line-height:1.6;margin-bottom:10px}
+
+/* ── EDUCATION (no accordion, static) ── */
+.edu-list{display:flex;flex-direction:column;gap:32px}
+
+.edu-item{
+  position:relative;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.edu-line{
+  position:absolute;
+  left:20px;top:40px;bottom:-32px;
+  width:1px;
+  background:rgba(255,255,255,.12);
+  transform:scaleY(0);
+  transform-origin:top;
+  animation:scaleIn .4s ease forwards;animation-delay:.1s;
+}
+.edu-item:last-child .edu-line{display:none}
+
+.edu-left{display:flex;align-items:flex-start;gap:12px}
+
+.edu-logo{
+  width:40px;height:40px;flex-shrink:0;
+  border-radius:6px;border:1px solid var(--border);background:var(--muted);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;color:var(--muted-foreground);
+}
+
+.edu-info{display:flex;flex-direction:column;gap:4px}
+.edu-name{font-size:1.1rem;font-weight:500;letter-spacing:-.02em}
+@media(min-width:768px){.edu-name{font-size:1.25rem}}
+
+.edu-sub{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;color:var(--muted-foreground);flex-wrap:wrap;
+}
+
+.edu-loc{display:inline-flex;align-items:center;gap:4px}
+.edu-loc svg{width:14px;height:14px}
+
+.edu-date{
+  flex-shrink:0;white-space:nowrap;
+  font-size:11px;color:rgba(136,136,136,.7);
+  font-variant-numeric:tabular-nums;
+  font-family:'JetBrains Mono',monospace;
+}
+
+/* ── SKILLS GRID ── */
+.skills-grid{
+  display:grid;
+  border-left:1px solid var(--border);
+  border-top:1px solid var(--border);
+  grid-template-columns:repeat(auto-fit,minmax(80px,1fr));
+}
+
+.skill-cell{
+  display:flex;
+  aspect-ratio:1;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:8px;
+  color:rgba(232,232,232,.6);
+  transition:color .15s;
+  font-size:13px;font-weight:500;
+}
+.skill-cell:hover{color:var(--foreground)}
+
+.skill-cell i{font-size:20px}
+.skill-cell svg{width:24px;height:24px}
+
+/* ── BLOG GRID ── */
+.blog-header{display:flex;flex-direction:column;gap:4px;padding:8px}
+
+.blog-grid{
+  display:grid;
+  gap:16px;
+  padding:0 8px 8px;
+}
+@media(min-width:640px){
+  .blog-grid{grid-template-columns:1fr 1fr;auto-rows:fr}
+}
+
+.blog-card{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  overflow:hidden;
+  border-radius:6px;
+  border:1px solid var(--border);
+  transition:border-color .15s;
+  text-decoration:none;color:inherit;
+}
+.blog-card:hover{border-color:rgba(255,255,255,.4)}
+
+.blog-thumb{
+  position:relative;
+  aspect-ratio:16/9;
+  flex-shrink:0;
+  overflow:hidden;
+  border-bottom:1px solid var(--border);
+  background:var(--muted);
+  display:flex;align-items:center;justify-content:center;
+}
+
+.blog-thumb-placeholder{
+  font-size:28px;color:var(--muted-foreground);
+}
+
+.blog-info{
+  display:flex;flex:1;flex-direction:column;gap:8px;padding:12px;
+}
+
+.blog-title{
+  font-size:15px;font-weight:500;line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  letter-spacing:-.01em;
+}
+
+.blog-excerpt{
+  font-size:13px;line-height:1.6;color:var(--muted-foreground);flex:1;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+
+.blog-meta{
+  display:flex;align-items:center;gap:12px;padding-top:4px;
+  font-size:11px;color:var(--muted-foreground);
+}
+
+.blog-meta-item{display:inline-flex;align-items:center;gap:6px}
+.blog-meta-item svg{width:12px;height:12px}
+
+/* ── CONNECT GRID ── */
+.connect-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border:1px solid var(--border);
+}
+
+.connect-cell{border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.connect-cell:nth-child(2n){border-right:0}
+.connect-cell:nth-last-child(-n+2){border-bottom:0}
+/* 7th cell (odd last) spans full width */
+.connect-cell:last-child:nth-child(odd){grid-column:1/-1;border-right:0;border-bottom:0}
+
+.connect-link{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:0 4px;
+  height:100%;
+  min-height:64px;
+  text-decoration:none;color:inherit;
+  transition:padding-left .15s;
+}
+.connect-link:hover{padding-left:8px}
+
+.connect-icon-wrap{
+  display:flex;
+  align-items:center;justify-content:center;
+  width:40px;height:40px;
+  border-right:1px dashed var(--border);flex-shrink:0;
+}
+
+.connect-icon{
+  width:32px;height:32px;
+  border-radius:6px;
+  border:1px solid var(--border);
+  background:var(--muted);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:var(--muted-foreground);
+}
+
+.connect-text{display:flex;min-width:0;flex:1;flex-direction:column;gap:2px}
+.connect-platform{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.connect-handle{font-size:11px;color:var(--muted-foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'JetBrains Mono',monospace}
+
+.connect-arrow{
+  flex-shrink:0;margin-right:8px;width:16px;height:16px;
+  color:var(--muted-foreground);
+  transition:transform .3s,color .3s;
+}
+.connect-link:hover .connect-arrow{transform:translate(2px,-2px);color:var(--foreground)}
+
+/* ── FOOTER ── */
+footer{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  height:96px;gap:4px;text-align:center;
+}
+.footer-logo{font-size:18px;font-weight:500}
+.footer-credit{font-size:13px;color:var(--muted-foreground)}
+.footer-credit a{transition:color .15s}
+.footer-credit a:hover{color:var(--primary);text-decoration:underline;text-underline-offset:3px}
+
+/* ── SPACING ── */
+.p2{padding:8px}
+.pt0{padding-top:0}
+
+/* ── ANIMATIONS ── */
+.fade-up{
+  opacity:0;transform:translateY(12px);filter:blur(8px);
+  transition:opacity .5s ease,transform .5s ease,filter .5s ease;
+}
+.fade-up.visible{opacity:1;transform:none;filter:none}
+
+.fade-up-sm{
+  opacity:0;transform:translateY(8px);filter:blur(6px);
+  transition:opacity .4s ease,transform .4s ease,filter .4s ease;
+}
+.fade-up-sm.visible{opacity:1;transform:none;filter:none}
+
+/* ── MAIN CONTENT ── */
+main{flex:1;display:flex;flex-direction:column}
+
+/* ── MOBILE ── */
+@media(max-width:480px){
+  .hero-ctas .btn-outline{height:28px;font-size:12px;padding:0 10px}
+  .connect-grid{grid-template-columns:1fr}
+  .connect-cell:nth-child(2n){border-right:1px solid var(--border)}
+  .connect-cell:nth-last-child(-n+2){border-bottom:1px solid var(--border)}
+  .connect-cell:last-child{border-bottom:0}
+}
+
+/* Education: stack date under the name on phones so the title is not squeezed */
+@media(max-width:640px){
+  .edu-item{flex-direction:column;gap:6px}
+  .edu-left{width:100%}
+  .edu-date{margin-left:52px}
+}
 </style>
 </head>
 <body>
-<a class="skip" href="#main-content">Skip to content</a>
 
-<header class="site-header">
-  <div class="wrap header-inner">
-    <a href="/" class="logo" aria-label="GM Anondo — home"><span class="logo-mark">GM</span>gmanondo</a>
-    <nav class="nav" aria-label="Primary">
-      <a href="#work" class="nav-link hide-sm">Work</a>
-      <a href="#research" class="nav-link hide-sm">Research</a>
-      <a href="#experience" class="nav-link hide-sm">Experience</a>
-      <a href="#contact" class="nav-link">Contact</a>
-      <span class="nav-sep" aria-hidden="true"></span>
-      <button class="icon-btn theme-toggle" type="button" aria-label="Toggle dark mode">
-        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-      </button>
-      <a href="https://github.com/synt4x-an0ndo" target="_blank" rel="noopener me" class="icon-btn" aria-label="GitHub">
-        <svg viewBox="0 0 1024 1024"><path fill="currentColor" fill-rule="evenodd" d="M512 0C229.12 0 0 229.12 0 512c0 226.56 146.56 417.92 350.08 485.76 25.6 4.48 35.2-10.88 35.2-24.32 0-12.16-.64-52.48-.64-95.36-128.64 23.68-161.92-31.36-172.16-60.16-5.76-14.72-30.72-60.16-52.48-72.32-17.92-9.6-43.52-33.28-.64-33.92 40.32-.64 69.12 37.12 78.72 52.48 46.08 77.44 119.68 55.68 149.12 42.24 4.48-33.28 17.92-55.68 32.64-68.48-113.92-12.8-232.96-56.96-232.96-252.8 0-55.68 19.84-101.76 52.48-137.6-5.12-12.8-23.04-65.28 5.12-135.68 0 0 42.88-13.44 140.8 52.48 40.96-11.52 84.48-17.28 128-17.28s87.04 5.76 128 17.28c97.92-66.56 140.8-52.48 140.8-52.48 28.16 70.4 10.24 122.88 5.12 135.68 32.64 35.84 52.48 81.28 52.48 137.6 0 196.48-119.68 240-233.6 252.8 18.56 16 34.56 46.72 34.56 94.72 0 68.48-.64 123.52-.64 140.8 0 13.44 9.6 29.44 35.2 24.32C877.44 929.92 1024 737.92 1024 512 1024 229.12 794.88 0 512 0" clip-rule="evenodd"/></svg>
-      </a>
-    </nav>
-  </div>
-</header>
+<div class="page-grid">
+  <div class="hatch-left"></div>
 
-<main id="main-content">
+  <div class="page-col">
 
-  <!-- ── HERO ── -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-grid" itemprop="mainEntity" itemscope itemtype="https://schema.org/Person" itemid="https://gmanondo.me/#person">
-        <div class="reveal">
-          <div class="hero-meta">
-            <span class="status"><span class="dot" aria-hidden="true"></span>Available for new projects</span>
-            <span>Dhaka, Bangladesh</span>
-          </div>
-          <h1 class="hero-name"><span itemprop="name">G.M. Millat</span> <span class="aka" aria-label="also known as GM Anondo">(Anondo)</span></h1>
-          <p class="hero-role" itemprop="jobTitle">Website Developer · Eng. (CSE) · Frontend &amp; UI · Researcher &amp; AI Enthusiast</p>
-          <p class="hero-lead">Founder of <a href="/the-raw-bros" class="link">The Raw Bros</a>. I design and build web products end to end, and do applied machine-learning research.</p>
-          <p class="hero-bio" itemprop="description">
-            I am G.M. Millat (Anondo), the Founder of The Raw Bros, a Website Developer, and a B.Sc graduate in Computer Science &amp; Engineering from the University of Information Technology and Sciences (UITS), Dhaka. I specialize in frontend development and UI design, and build complete web applications with React.js, Next.js, Node.js, and Express — including the Zuberee e-commerce platform, CareerEdge.AI, and IngreChec. Alongside development, I conduct research in artificial intelligence, with published, accepted, and pending work in healthcare prediction and AI-assisted interview preparation.
-          </p>
-          <div class="hero-ctas">
-            <a href="mailto:gmmillat1100@gmail.com" class="btn btn-primary">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
-              Hire me
-            </a>
-            <a href="anondo-cv.pdf" target="_blank" rel="noopener" class="btn btn-ghost">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 13H8M16 17H8M16 13h-2"/></svg>
-              Curriculum Vitae
-            </a>
-            <a href="/the-raw-bros" class="btn btn-ghost">The Raw Bros</a>
-            <a href="/parents" class="btn btn-text">Family status →</a>
-          </div>
-        </div>
-
-        <figure class="portrait reveal">
-          <div class="portrait-frame">
-            <img src="g-m-millat-anondo-website-developer.jpg" itemprop="image" alt="GM Anondo — G.M. Millat, Website Developer from Bangladesh" width="600" height="750" loading="eager" fetchpriority="high"/>
-          </div>
-          <figcaption><span>Dhaka · GMT+6</span><span data-dhaka-time aria-label="Local time in Dhaka"></span></figcaption>
-        </figure>
+    <!-- HEADER -->
+    <header id="site-header">
+      <div class="header-inner">
+        <a href="#" class="logo">gmanondo.</a>
+        <nav>
+          <a href="https://github.com/synt4x-an0ndo" target="_blank" rel="noopener me" class="nav-gh" aria-label="GitHub">
+            <svg width="16" height="16" viewBox="0 0 1024 1024" fill="none">
+              <path fill="currentColor" fill-rule="evenodd" d="M512 0C229.12 0 0 229.12 0 512c0 226.56 146.56 417.92 350.08 485.76 25.6 4.48 35.2-10.88 35.2-24.32 0-12.16-.64-52.48-.64-95.36-128.64 23.68-161.92-31.36-172.16-60.16-5.76-14.72-30.72-60.16-52.48-72.32-17.92-9.6-43.52-33.28-.64-33.92 40.32-.64 69.12 37.12 78.72 52.48 46.08 77.44 119.68 55.68 149.12 42.24 4.48-33.28 17.92-55.68 32.64-68.48-113.92-12.8-232.96-56.96-232.96-252.8 0-55.68 19.84-101.76 52.48-137.6-5.12-12.8-23.04-65.28 5.12-135.68 0 0 42.88-13.44 140.8 52.48 40.96-11.52 84.48-17.28 128-17.28s87.04 5.76 128 17.28c97.92-66.56 140.8-52.48 140.8-52.48 28.16 70.4 10.24 122.88 5.12 135.68 32.64 35.84 52.48 81.28 52.48 137.6 0 196.48-119.68 240-233.6 252.8 18.56 16 34.56 46.72 34.56 94.72 0 68.48-.64 123.52-.64 140.8 0 13.44 9.6 29.44 35.2 24.32C877.44 929.92 1024 737.92 1024 512 1024 229.12 794.88 0 512 0" clip-rule="evenodd"/>
+            </svg>
+          </a>
+        </nav>
       </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- ── PROOF ── -->
-  <div class="wrap">
-    <div class="facts reveal">
-      <div class="fact"><p class="fact-value">Pre-seed funded</p><p class="fact-label">UIHP Launchpad — World Bank &amp; Bangladesh Hi-Tech Park, 2025</p></div>
-      <div class="fact"><p class="fact-value">IEEE published</p><p class="fact-label">CKD prediction paper, PECCII 2026 on IEEE Xplore</p></div>
-      <div class="fact"><p class="fact-value">99.58%</p><p class="fact-label">Diabetic foot ulcer classification accuracy, EfficientNetB0</p></div>
-      <div class="fact"><p class="fact-value">Live in production</p><p class="fact-label">Zuberee e-commerce, serving real orders daily</p></div>
-    </div>
-  </div>
+    <main id="main-content">
 
-  <!-- ── WORK ── -->
-  <section class="sec" id="work" style="margin-top:clamp(40px,6vw,72px)">
-    <div class="wrap sec-grid">
-      <header class="sec-head reveal">
-        <span class="sec-num">01 — Work</span>
-        <h2 class="sec-title">Projects I'm proud of</h2>
-        <p class="sec-desc">Product work where I handled everything from UX flow to production deployment.</p>
-      </header>
-
-      <div>
-        <!-- Zuberee — featured -->
-        <article class="feature reveal">
-          <div class="feature-media">
-            <div class="browser">
-              <div class="browser-bar"><i></i><i></i><i></i><span>zuberee.com</span></div>
-              <img src="zuberee-shot.webp" alt="Zuberee e-commerce storefront built by GM Anondo and The Raw Bros" width="1280" height="640" loading="lazy"/>
-            </div>
-          </div>
-          <div class="feature-body">
-            <div>
-              <div class="proj-kicker"><span class="pill is-ok">Live in production</span><span class="pill">Client work</span></div>
-              <h3 class="proj-name">Zuberee</h3>
-              <p class="proj-tagline">Full-stack e-commerce platform</p>
-              <p class="proj-desc">Designed and built Zuberee, a complete e-commerce platform for a fashion retailer in Bangladesh — custom storefront, product &amp; inventory management, order processing, payments and a full admin dashboard. Built end to end with The Raw Bros and running live in production, serving real customers and orders every day.</p>
-              <div class="proj-links">
-                <a href="https://zuberee.com" target="_blank" rel="noopener" class="arrow-link">Visit zuberee.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
-                <a href="/the-raw-bros" class="arrow-link">The Raw Bros <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+      <!-- ── HERO ── -->
+      <section class="section-wrap hero-section">
+        <div class="section-inner">
+          <div class="hero-body fade-up" itemprop="mainEntity" itemscope itemtype="https://schema.org/Person" itemid="https://gmanondo.me/#person">
+            
+              
+              <div class="hero-avatar-placeholder">
+  <img src="g-m-millat-anondo-website-developer.jpg" itemprop="image" alt="GM Anondo — G.M. Millat, Website Developer from Bangladesh" width="120" height="120" loading="eager" fetchpriority="high">
+              </div>
+            
+            <div class="hero-text">
+              <div class="fade-up-sm">
+                <h1 class="hero-name" itemprop="name">G.M. Millat <span class="hero-also-known" aria-label="also known as GM Anondo">(Anondo)</span></h1>
+                <p class="hero-subtitle" itemprop="jobTitle">Website Developer · Eng. (CSE) · Frontend &amp; UI · Researcher &amp; AI Enthusiast</p>
+              </div>
+              <p class="hero-founder fade-up-sm">Founder of <a href="/the-raw-bros">The Raw Bros</a></p>
+              <p class="hero-bio fade-up-sm" itemprop="description">
+                I am G.M. Millat (Anondo), the Founder of The Raw Bros, a Website Developer, and a B.Sc graduate in Computer Science &amp; Engineering from the University of Information Technology and Sciences (UITS), Dhaka. I specialize in frontend development and UI design, and build complete web applications with React.js, Next.js, Node.js, and Express — including the Zuberee e-commerce platform, CareerEdge.AI, and IngreChec. Alongside development, I conduct research in artificial intelligence, with published, accepted, and pending work in healthcare prediction and AI-assisted interview preparation.
+              </p>
+              <div class="hero-ctas fade-up-sm">
+                <a href="mailto:gmmillat1100@gmail.com" class="btn btn-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+                  Hire Me<kbd>E</kbd>
+                </a>
+                <a href="/parents" class="btn-outline btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  Family Status<kbd>P</kbd>
+                </a>
+                <a href="anondo-cv.pdf" target="_blank" rel="noopener" class="btn-outline btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                  Curriculum Vitae<kbd>↗</kbd>
+                </a>
+                <a href="/the-raw-bros" class="btn-outline btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                  The Raw Bros<kbd>R</kbd>
+                </a>
               </div>
             </div>
-            <dl class="meta-list">
-              <div><dt>Role</dt><dd>Design, frontend, backend, deployment</dd></div>
-              <div><dt>Scope</dt><dd>Storefront, admin dashboard, payments, PWA</dd></div>
-              <div><dt>Stack</dt><dd>Next.js, React, Node.js, Express, PostgreSQL</dd></div>
-            </dl>
           </div>
-        </article>
-
-        <div class="cards">
-          <article class="card reveal">
-            <div class="proj-kicker"><span class="pill is-accent">Pre-seed funded</span></div>
-            <h3 class="proj-name">CareerEdge.AI</h3>
-            <p class="proj-tagline">AI-powered interview practice platform</p>
-            <p class="proj-desc">Simulates real interview scenarios, generates role-specific questions and gives automated feedback on answers. Selected for the UIHP Launchpad Program, funded by the Bangladesh Hi-Tech Park Authority and the World Bank, and awarded pre-seed funding.</p>
-            <div class="tags"><span class="tag">React.js</span><span class="tag">Tailwind CSS</span><span class="tag">Chart.js</span><span class="tag">Framer Motion</span><span class="tag">Vite</span></div>
-            <div class="proj-links">
-              <a href="https://career-edge-alpha.vercel.app/" target="_blank" rel="noopener" class="arrow-link">Live app <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
-              <a href="https://uihp.org/verify-certificate?student_id=0301064620" target="_blank" rel="noopener" class="arrow-link">Verify UIHP <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
-              <a href="https://www.uihp.org/program" target="_blank" rel="noopener" class="arrow-link">Program <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
-            </div>
-          </article>
-
-          <article class="card reveal">
-            <div class="proj-kicker"><span class="pill">Founder</span></div>
-            <h3 class="proj-name">IngreChec</h3>
-            <p class="proj-tagline">Smart food ingredient analyzer</p>
-            <p class="proj-desc">Founded and led IngreChec, which scans food labels and gives instant safety insights for individual dietary needs — helping people make safer, healthier eating choices as part of Tech for Good initiatives in Bangladesh.</p>
-            <div class="tags"><span class="tag">React.js</span><span class="tag">Node.js</span><span class="tag">Gemini API</span><span class="tag">Tailwind CSS</span></div>
-            <div class="proj-links">
-              <a href="https://www.ingrechec.online" target="_blank" rel="noopener" class="arrow-link">ingrechec.online <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
-            </div>
-          </article>
         </div>
+      </section>
 
-        <p class="sub-head reveal"><span>More projects</span><span>05</span></p>
-        <ul class="rows">
-          <li class="reveal"><a class="row" href="https://skillswap-6p5.pages.dev/" target="_blank" rel="noopener">
-            <div><p class="row-name">SkillSwap</p><p class="row-desc">Peer-to-peer skill exchange — list what you can teach, search by skill, chat in real time and jump into video calls.</p></div>
-            <div class="row-right"><span class="row-stack">React · Firebase · Tailwind</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></div>
-          </a></li>
-          <li class="reveal"><a class="row" href="https://localdhaka.pages.dev/" target="_blank" rel="noopener">
-            <div><p class="row-name">Local Dhaka</p><p class="row-desc">Community Q&amp;A for Dhaka residents — from the best biryani in Old Dhaka to reporting a waterlogged road.</p></div>
-            <div class="row-right"><span class="row-stack">HTML · CSS · JavaScript</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></div>
-          </a></li>
-          <li class="reveal"><a class="row" href="https://cineotaku.deadhydra.me/" target="_blank" rel="noopener">
-            <div><p class="row-name">CineOtaku</p><p class="row-desc">Streaming platform for anime, movies, TV shows and web series, built for desktop and mobile.</p></div>
-            <div class="row-right"><span class="row-stack">HTML · CSS · JavaScript</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></div>
-          </a></li>
-          <li class="reveal"><a class="row" href="https://github.com/synt4x-an0ndo/emotions-detection-main" target="_blank" rel="noopener">
-            <div><p class="row-name">Emotion Detection</p><p class="row-desc">Real-time webcam face detection that labels each person's emotion on screen using a CNN.</p></div>
-            <div class="row-right"><span class="row-stack">Python · TensorFlow</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></div>
-          </a></li>
-          <li class="reveal"><a class="row" href="https://synt4x-an0ndo.github.io/harmoniq/" target="_blank" rel="noopener">
-            <div><p class="row-name">HarmoniQ</p><p class="row-desc">Discover and share playlists with friends, powered by the YouTube API.</p></div>
-            <div class="row-right"><span class="row-stack">HTML · CSS · JavaScript</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></div>
-          </a></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── RESEARCH ── -->
-  <section class="sec" id="research">
-    <div class="wrap sec-grid">
-      <header class="sec-head reveal">
-        <span class="sec-num">02 — Research</span>
-        <h2 class="sec-title">Publications</h2>
-        <p class="sec-desc">Applied machine learning for healthcare and AI-assisted interview preparation, with co-authors at UITS.</p>
-      </header>
-
-      <ol class="pubs">
-        <li class="pub reveal">
-          <div>
-            <div class="pub-meta"><span class="pill is-ok">Published</span><span>IEEE Xplore · PECCII 2026</span></div>
-            <h3 class="pub-title">Advancing Early Chronic Kidney Disease Prediction: An Optimized Machine Learning Framework</h3>
-            <p class="pub-desc">Co-author. XGBoost, LightGBM and Kolmogorov–Arnold Networks for early CKD prediction. Added to IEEE Xplore on 27 August 2026.</p>
-            <div class="proj-links">
-              <a href="https://doi.org/10.1109/PECCII70991.2026.11661906" target="_blank" rel="noopener" class="arrow-link">DOI 10.1109/PECCII70991.2026.11661906 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
-              <a href="kidney-certificate.jpeg" target="_blank" class="arrow-link">Certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a>
+      <!-- ── PROJECTS ── -->
+      <section class="section-wrap fade-up">
+        <div class="section-inner">
+          <div class="fade-up-sm">
+            <div class="sec-header p2">
+              <p class="sec-label">My Work</p>
+              <h2 class="sec-title">Projects I'm proud of</h2>
+              <p class="sec-desc">A snapshot of product-focused experiments and real-world projects where I handled everything from UX flow to production deployment.</p>
             </div>
           </div>
-          <div class="pub-metric"><b>98.2%</b><span>prediction accuracy</span></div>
-        </li>
+          <div class="projects-list p2" style="padding-top:0">
 
-        <li class="pub reveal">
-          <div>
-            <div class="pub-meta"><span class="pill is-accent">Accepted</span><span>IEEE RAAICON 2026</span></div>
-            <h3 class="pub-title">CareerEdge: An AI-Powered Interview Preparation Platform with Semantic Response Evaluation</h3>
-            <p class="pub-desc">Co-author. Accepted for presentation — the research behind CareerEdge.AI.</p>
-          </div>
-          <div class="pub-metric"></div>
-        </li>
+                        <!-- Zuberee -->
+            <div class="project-item fade-up-sm">
+              <div class="project-line"></div>
+              <button class="project-trigger" onclick="toggleItem(this.closest('.project-item'))">
+                <div class="project-trigger-left">
+                  <div class="project-icon"><i class="fa-solid fa-store"></i></div>
+                  <div class="project-info">
+                    <span class="project-name">Zuberee</span>
+                    <span class="project-tagline">Full-Stack E-Commerce Platform — Live in Production</span>
+                  </div>
+                </div>
+                <span class="project-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="project-body">
+                <div class="project-body-inner">
+                  <p class="project-desc">Designed and built Zuberee, a complete e-commerce platform for a fashion retailer in Bangladesh — custom storefront, product &amp; inventory management, order processing, payments and a full admin dashboard. Built end to end with The Raw Bros and running live in production, serving real customers and orders every day.</p>
+                  <div class="project-tags">
+                    <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">PostgreSQL</span><span class="tag">PWA</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://zuberee.com" target="_blank" class="project-link">
+                      zuberee.com
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    </a>
+                    <a href="https://therawbros.tech/" target="_blank" class="project-link">
+                      The Raw Bros
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <li class="pub reveal">
-          <div>
-            <div class="pub-meta"><span class="pill">Submitted</span><span>ICEFronT 2026</span></div>
-            <h3 class="pub-title">Advancing Automated Diabetic Foot Ulcer Detection: A Deep Learning-Based Medical Image Classification Framework</h3>
-            <p class="pub-desc">Co-author. Developed and evaluated CNN, MobileNetV2, EfficientNetB0 and ResNet50 for medical image classification.</p>
-          </div>
-          <div class="pub-metric"><b>99.58%</b><span>accuracy, EfficientNetB0</span></div>
-        </li>
+<!-- CareerEdge.AI -->
+            <div class="project-item fade-up-sm">
+              <div class="project-line"></div>
+              <button class="project-trigger" onclick="toggleItem(this.closest('.project-item'))">
+                <div class="project-trigger-left">
+                  <div class="project-icon"><i class="fa-solid fa-robot"></i></div>
+                  <div class="project-info">
+                    <span class="project-name">CareerEdge.AI</span>
+                    <span class="project-tagline">AI-Powered Interview Practice Platform</span>
+                  </div>
+                </div>
+                <span class="project-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="project-body">
+                <div class="project-body-inner">
+                  <p class="project-desc">Developed CareerEdge.AI, an AI-driven platform that simulates real interview scenarios, generates role-specific questions, and provides automated feedback on user responses. Selected for the UIHP Launchpad Program funded by Bangladesh Hi-Tech Park Authority and the World Bank. Awarded Pre-Seed funding to support product development.</p>
+                  <div class="project-tags">
+                    <span class="tag">React.js</span><span class="tag">Tailwind CSS</span><span class="tag">Chart.js</span><span class="tag">Framer Motion</span><span class="tag">Vite</span><span class="tag">JavaScript</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://uihp.org/verify-certificate?student_id=0301064620" target="_blank" class="project-link">
+                      Verify UIHP
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    </a>
+                    <a href="https://www.uihp.org/program" target="_blank" class="project-link">
+                      UIHP Program
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    </a>
+                    <a href="https://career-edge-alpha.vercel.app/" target="_blank" class="project-link">
+                      CareerEdge
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <li class="pub reveal">
-          <div>
-            <div class="pub-meta"><span class="pill">Poster</span><span>SISE 2026 · Jan 2026</span></div>
-            <h3 class="pub-title">CareerEdge: An AI-Powered Interview Practicing Platform</h3>
-            <p class="pub-desc">Research poster presentation, awarded a participation certificate.</p>
-          </div>
-          <div class="pub-metric"></div>
-        </li>
-      </ol>
-    </div>
-  </section>
+            <!-- IngreChec -->
+            <div class="project-item fade-up-sm">
+              <div class="project-line"></div>
+              <button class="project-trigger" onclick="toggleItem(this.closest('.project-item'))">
+                <div class="project-trigger-left">
+                  <div class="project-icon"><i class="fa-solid fa-leaf"></i></div>
+                  <div class="project-info">
+                    <span class="project-name">IngreChec</span>
+                    <span class="project-tagline">Smart Food Ingredient Analyzer</span>
+                  </div>
+                </div>
+                <span class="project-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="project-body">
+                <div class="project-body-inner">
+                  <p class="project-desc">Founded and led IngreChec, a smart food ingredient analyzer that helps users make safer, healthier eating choices. Designed and implemented functionality to scan food labels and provide instant safety insights for individual dietary needs. Promoted healthy lifestyle awareness contributing to Tech for Good initiatives in Bangladesh.</p>
+                  <div class="project-tags">
+                    <span class="tag">React.js</span><span class="tag">Node.js</span><span class="tag">Gemini API</span><span class="tag">Tailwind CSS</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://www.ingrechec.online" target="_blank" class="project-link">
+                      ingrechec.online
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-  <!-- ── EXPERIENCE ── -->
-  <section class="sec" id="experience">
-    <div class="wrap sec-grid">
-      <header class="sec-head reveal">
-        <span class="sec-num">03 — Experience</span>
-        <h2 class="sec-title">Professional experience</h2>
-        <p class="sec-desc">Roles where I built, shipped and researched.</p>
-      </header>
+            <!-- CKD Research -->
+            <div class="project-item fade-up-sm">
+              <div class="project-line"></div>
+              <button class="project-trigger" onclick="toggleItem(this.closest('.project-item'))">
+                <div class="project-trigger-left">
+                  <div class="project-icon"><i class="fa-solid fa-brain"></i></div>
+                  <div class="project-info">
+                    <span class="project-name">CKD Prediction ML</span>
+                    <span class="project-tagline">PECCII 2026 Research Paper</span>
+                  </div>
+                </div>
+                <span class="project-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="project-body">
+                <div class="project-body-inner">
+                  <p class="project-desc">Co-authored research paper "Advancing Early Chronic Kidney Disease Prediction: An Optimized Machine Learning Framework", submitted to the International Conference on Power, Electronics, Communications, Computing, and Intelligent Infrastructure (PECCII 2026). Utilized advanced ML models achieving up to 98.2% prediction accuracy.</p>
+                  <div class="project-tags">
+                    <span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">LightGBM</span><span class="tag">KAN</span><span class="tag">Kaggle</span><span class="tag">Gemini API</span> 
+                  </div>
+                  <div class="project-links">
+                    <a href="kidney-certificate.jpeg" target="_blank" class="project-link">
+                      View Certificate
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-      <ol class="tl">
-        <li class="tl-row reveal">
-          <p class="tl-date"><span class="now"><span class="dot" aria-hidden="true"></span>Present</span></p>
-          <div>
-            <h3 class="tl-title">Founder</h3>
-            <p class="tl-org"><a href="/the-raw-bros" class="link">The Raw Bros</a> · Web development agency, Dhaka</p>
-            <p class="tl-desc">Lead every project from first consultation through launch and support. Custom websites, e-commerce stores and web apps, hand-written end to end — starting with Zuberee, now live in production.</p>
-          </div>
-        </li>
-        <li class="tl-row reveal">
-          <p class="tl-date">Dec 2025 – Mar 2026</p>
-          <div>
-            <h3 class="tl-title">Research Contributor</h3>
-            <p class="tl-org">University of Information Technology and Sciences (UITS)</p>
-            <p class="tl-desc">Co-authored the PECCII 2026 paper on chronic kidney disease prediction (published on IEEE Xplore) and the ICEFronT 2026 paper on diabetic foot ulcer detection.</p>
-            <div class="tags"><span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">LightGBM</span><span class="tag">TensorFlow</span><span class="tag">Kaggle</span><span class="tag">Gemini API</span></div>
-          </div>
-        </li>
-        <li class="tl-row reveal">
-          <p class="tl-date">Jun 2025 – Sep 2025</p>
-          <div>
-            <h3 class="tl-title">COO &amp; CTO, Frontend Developer</h3>
-            <p class="tl-org">CareerEdge.AI · Full-time</p>
-            <p class="tl-desc">Ran operations and technology for an AI interview practice platform — real-world interview simulation, role-specific question generation and automated feedback. Selected for the UIHP Launchpad Program (Bangladesh Hi-Tech Park Authority &amp; World Bank) and awarded pre-seed funding.</p>
-            <div class="tags"><span class="tag">React.js</span><span class="tag">Tailwind CSS</span><span class="tag">Chart.js</span><span class="tag">Framer Motion</span><span class="tag">Vite</span><span class="tag">Git</span></div>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ── EDUCATION ── -->
-  <section class="sec" id="education">
-    <div class="wrap sec-grid">
-      <header class="sec-head reveal">
-        <span class="sec-num">04 — Education</span>
-        <h2 class="sec-title">Academic background</h2>
-      </header>
-
-      <ol class="tl">
-        <li class="tl-row reveal">
-          <p class="tl-date">Sep 2022 – Sep 2026</p>
-          <div>
-            <h3 class="tl-title">B.Sc in Computer Science and Engineering</h3>
-            <p class="tl-org">University of Information Technology and Sciences · Nayanagar, Notun Bazar, Dhaka-1212</p>
-          </div>
-        </li>
-        <li class="tl-row reveal">
-          <p class="tl-date">Jun 2019 – Feb 2021</p>
-          <div>
-            <h3 class="tl-title">Higher Secondary Certificate (HSC) — Science</h3>
-            <p class="tl-org">Dr Mahbubur Rahman Mollah College · Jatrabari, Dhaka</p>
-          </div>
-        </li>
-        <li class="tl-row reveal">
-          <p class="tl-date">Jan 2015 – May 2019</p>
-          <div>
-            <h3 class="tl-title">Secondary School Certificate (SSC) — Science</h3>
-            <p class="tl-org">Jibnagar High School · Chatkhil, Noakhali</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ── SKILLS ── -->
-  <section class="sec" id="skills">
-    <div class="wrap sec-grid">
-      <header class="sec-head reveal">
-        <span class="sec-num">05 — Skills</span>
-        <h2 class="sec-title">The tools I reach for every day</h2>
-        <p class="sec-desc">Specialties: web development, startup management, ML models with Kaggle datasets, Gemini API integration, and prediction models with Python and XGBoost.</p>
-      </header>
-
-      <dl class="skills reveal">
-        <div class="skill-row"><dt>Frontend</dt><dd><span>React.js</span><span>Next.js</span><span>TypeScript</span><span>JavaScript</span><span>Tailwind CSS</span><span>Bootstrap</span><span>Vite</span></dd></div>
-        <div class="skill-row"><dt>Backend &amp; data</dt><dd><span>Node.js</span><span>Express.js</span><span>REST APIs</span><span>MongoDB</span><span>PostgreSQL</span><span>SQL</span><span>Firebase</span><span>Firestore</span></dd></div>
-        <div class="skill-row"><dt>ML &amp; research</dt><dd><span>Python</span><span>TensorFlow</span><span>XGBoost</span><span>LightGBM</span><span>CNNs</span><span>Gemini API</span><span>Kaggle</span></dd></div>
-        <div class="skill-row"><dt>Languages</dt><dd><span>C</span><span>C++</span><span>JavaScript</span><span>TypeScript</span><span>Python</span></dd></div>
-        <div class="skill-row"><dt>Tools &amp; deploy</dt><dd><span>Git</span><span>GitHub</span><span>Postman</span><span>Vercel</span><span>Netlify</span><span>Cloudflare</span><span>Kali Linux</span></dd></div>
-        <div class="skill-row"><dt>Design &amp; media</dt><dd><span>Figma</span><span>Photoshop</span><span>Lightroom</span><span>Premiere Pro</span><span>After Effects</span><span>DaVinci Resolve</span><span>Canva</span><span>Kinemaster</span><span>PowerPoint</span></dd></div>
-        <div class="skill-row"><dt>Spoken</dt><dd><span>Bangla (mother tongue)</span><span>English (Higher Intermediate)</span></dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <!-- ── RECOGNITION ── -->
-  <section class="sec" id="recognition">
-    <div class="wrap sec-grid">
-      <header class="sec-head reveal">
-        <span class="sec-num">06 — Recognition</span>
-        <h2 class="sec-title">Courses &amp; certifications</h2>
-        <p class="sec-desc">Verified achievements across development, research and innovation programs.</p>
-      </header>
-
-      <ol class="tl">
-        <li class="tl-row reveal">
-          <p class="tl-date">Mar 2026</p>
-          <div>
-            <h3 class="tl-title">Frontend Developer (React)</h3>
-            <p class="tl-org">HackerRank Certification</p>
-            <div class="proj-links"><a href="https://www.hackerrank.com/certificates/c8936e3143f6" target="_blank" rel="noopener" class="arrow-link">Verify credential <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></div>
-          </div>
-        </li>
-        <li class="tl-row reveal">
-          <p class="tl-date">2026</p>
-          <div>
-            <h3 class="tl-title">PECCII 2026 — Research Paper Certificate</h3>
-            <p class="tl-org">Co-authored research paper on CKD prediction</p>
-            <div class="proj-links"><a href="kidney-certificate.jpeg" target="_blank" class="arrow-link">View certificate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></div>
-          </div>
-        </li>
-        <li class="tl-row reveal">
-          <p class="tl-date">Jan 2026</p>
-          <div>
-            <h3 class="tl-title">SISE 2026 — Research Poster</h3>
-            <p class="tl-org">Participation certificate · CareerEdge: An AI-Powered Interview Practicing Platform</p>
-          </div>
-        </li>
-        <li class="tl-row reveal">
-          <p class="tl-date">Aug – Sep 2025</p>
-          <div>
-            <h3 class="tl-title">UIHP Launchpad — Cohort 6</h3>
-            <p class="tl-org">Certificate of participation &amp; pre-seed funding · Bangladesh Hi-Tech Park Authority &amp; World Bank</p>
-            <p class="tl-desc">CareerEdge.AI was selected for the University Innovation Hub Program Launchpad and, based on performance during the program, secured pre-seed funding.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ── CONTACT ── -->
-  <section class="sec contact" id="contact">
-    <div class="wrap">
-      <span class="sec-num reveal">07 — Contact</span>
-      <h2 class="contact-title reveal">Let's build something together.</h2>
-      <p class="contact-text reveal">Have a project, a role or a research collaboration in mind? Email is the best way to reach me.</p>
-      <div class="email-row reveal">
-        <a href="mailto:gmmillat1100@gmail.com" class="email-big">gmmillat1100@gmail.com</a>
-        <button type="button" class="copy-btn" data-copy="gmmillat1100@gmail.com" aria-label="Copy email address">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          <span class="copy-label">Copy</span>
-        </button>
-      </div>
-
-      <div class="channels reveal">
-        <a class="channel" href="https://www.linkedin.com/in/gm-anondo?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener me">
-          <span class="channel-icon"><i class="fa-brands fa-linkedin-in"></i></span>
-          <span class="channel-text"><span class="channel-name">LinkedIn</span><span class="channel-handle">gm-anondo</span></span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-        </a>
-        <a class="channel" href="https://github.com/synt4x-an0ndo" target="_blank" rel="noopener me">
-          <span class="channel-icon"><i class="fa-brands fa-github"></i></span>
-          <span class="channel-text"><span class="channel-name">GitHub</span><span class="channel-handle">synt4x-an0ndo</span></span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-        </a>
-        <a class="channel" href="tel:+8801838134612">
-          <span class="channel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span>
-          <span class="channel-text"><span class="channel-name">Phone</span><span class="channel-handle">(+880) 1838134612</span></span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-        </a>
-        <a class="channel" href="https://www.facebook.com/user.fakefox" target="_blank" rel="noopener me">
-          <span class="channel-icon"><i class="fa-brands fa-facebook-f"></i></span>
-          <span class="channel-text"><span class="channel-name">Facebook</span><span class="channel-handle">user.fakefox</span></span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-        </a>
-        <a class="channel" href="https://www.instagram.com/_.gmanondo404" target="_blank" rel="noopener me">
-          <span class="channel-icon"><i class="fa-brands fa-instagram"></i></span>
-          <span class="channel-text"><span class="channel-name">Instagram</span><span class="channel-handle">_.gmanondo404</span></span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-        </a>
-        <a class="channel" href="anondo-cv.pdf" target="_blank" rel="noopener">
-          <span class="channel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg></span>
-          <span class="channel-text"><span class="channel-name">Curriculum Vitae</span><span class="channel-handle">anondo-cv.pdf</span></span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-        </a>
+            <div class="project-item fade-up-sm">
+  <div class="project-line"></div>
+  <button class="project-trigger" onclick="toggleItem(this.closest('.project-item'))">
+    <div class="project-trigger-left">
+      <div class="project-icon"><i class="fa-solid fa-microscope"></i></div>
+      <div class="project-info">
+        <span class="project-name">Diabetic Foot Ulcer Detection</span>
+        <span class="project-tagline">ICEFronT 2026 Research Paper</span>
       </div>
     </div>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-inner">
-      <p>© 2026 G.M. Millat (Anondo) · Dhaka, Bangladesh</p>
-      <nav class="footer-links" aria-label="Footer">
-        <a href="/the-raw-bros">The Raw Bros</a>
-        <a href="/parents">Family</a>
-        <a href="anondo-cv.pdf" target="_blank" rel="noopener">CV</a>
-        <a href="#main-content">Back to top ↑</a>
-      </nav>
+    <span class="project-chevron">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m6 9 6 6 6-6"/>
+      </svg>
+    </span>
+  </button>
+  <div class="project-body">
+    <div class="project-body-inner">
+      <p class="project-desc">
+        Co-authored research paper "Advancing Automated Diabetic Foot Ulcer Detection: A Deep Learning-Based Medical Image Classification Framework", submitted to the International Conference on Emerging Frontiers in Technology (ICEFronT 2026). Developed and evaluated CNN, MobileNetV2, EfficientNetB0, and ResNet50 models, achieving 99.58% classification accuracy with EfficientNetB0.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">CNN</span>
+        <span class="tag">MobileNetV2</span>
+        <span class="tag">EfficientNetB0</span>
+        <span class="tag">ResNet50</span>
+        <span class="tag">TensorFlow</span>
+        <span class="tag">Deep Learning</span>
+        <span class="tag">Medical Imaging</span>
+      </div>
     </div>
-    <p class="footer-seo">G.M. Millat · GM Anondo · Website Developer · React · Next.js · Bangladesh</p>
   </div>
-</footer>
+</div>
 
-<script src="site.js" defer></script>
+            <!-- SkillSwap -->
+            <div class="project-item fade-up-sm">
+              <div class="project-line"></div>
+              <button class="project-trigger" onclick="toggleItem(this.closest('.project-item'))">
+                <div class="project-trigger-left">
+                  <div class="project-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+                  <div class="project-info">
+                    <span class="project-name">SkillSwap</span>
+                    <span class="project-tagline">Peer-to-peer skill exchange platform</span>
+                  </div>
+                </div>
+                <span class="project-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="project-body">
+                <div class="project-body-inner">
+                  <p class="project-desc">Peer-to-peer skill exchange platform where users list skills they can teach, search by skill, chat in real time, and jump into peer-to-peer video calls to swap knowledge.</p>
+                  <div class="project-tags">
+                    <span class="tag">React.js</span><span class="tag">Firebase</span><span class="tag">Tailwind CSS</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://skillswap-6p5.pages.dev/" target="_blank" class="project-link">
+                      SkillSwap
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-item fade-up-sm">
+              <button class="project-trigger" onclick="toggleItem(this.closest('.project-item'))">
+                <div class="project-trigger-left">
+                  <div class="project-icon"><i class="fa-solid fa-music"></i></div>
+                  <div class="project-info">
+                    <span class="project-name">HarmoniQ</span>
+                    <span class="project-tagline">Music Platform</span>
+                  </div>
+                </div>
+                <span class="project-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="project-body">
+                <div class="project-body-inner">
+                  <p class="project-desc">A music platform for discovering and sharing playlists with friends. With Youtube API</p>
+                  <div class="project-tags">
+                    <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://synt4x-an0ndo.github.io/harmoniq/" target="_blank" class="project-link">
+                      HarmoniQ
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+             <div class="project-item fade-up-sm">
+              <button class="project-trigger" onclick="toggleItem(this.closest('.project-item'))">
+                <div class="project-trigger-left">
+                  <div class="project-icon"><i class="fa-solid fa-face-sad-tear"></i></i></div>
+                  <div class="project-info">
+                    <span class="project-name">Emotion Detection</span>
+                    <span class="project-tagline">Real-Time Face Emotion Detector</span>
+                  </div>
+                </div>
+                <span class="project-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="project-body">
+                <div class="project-body-inner">
+                  <p class="project-desc">This project opens your webcam, detects faces in real time, and displays the person's current emotion label right next to their face on screen — using the CNN neural network path.</p>
+                  <div class="project-tags">
+                    <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">ML</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://github.com/synt4x-an0ndo/emotions-detection-main" target="_blank" class="project-link">
+                      Emotion Detection
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-item fade-up-sm">
+              <button class="project-trigger" onclick="toggleItem(this.closest('.project-item'))">
+                <div class="project-trigger-left">
+                  <div class="project-icon"><i class="fa-solid fa-location-crosshairs"></i></div>
+                  <div class="project-info">
+                    <span class="project-name">Local Dhaka</span>
+                    <span class="project-tagline">A hyper-local community platform for Dhaka</span>
+                  </div>
+                </div>
+                <span class="project-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="project-body">
+                <div class="project-body-inner">
+                  <p class="project-desc">Local Dhaka is a community-driven Q&A and discussion platform built specifically for Dhaka residents. Ask about the best biryani in Old Dhaka, find a safe hostel near your university, report a waterlogged road, or discover hidden gems — all powered by locals who actually know.</p>
+                  <div class="project-tags">
+                    <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://localdhaka.pages.dev/" target="_blank" class="project-link">
+                      Local Dhaka
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+<div class="project-item fade-up-sm">
+              <button class="project-trigger" onclick="toggleItem(this.closest('.project-item'))">
+                <div class="project-trigger-left">
+                  <div class="project-icon"><i class="fa-solid fa-circle-play"></i></i></div>
+                  <div class="project-info">
+                    <span class="project-name">CineOtaku</span>
+                    <span class="project-tagline">A modern streaming platform that lets users watch anime, movies, TV shows, and web series online</span>
+                  </div>
+                </div>
+                <span class="project-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="project-body">
+                <div class="project-body-inner">
+                  <p class="project-desc">CineOtaku is an all-in-one entertainment platform designed for anime enthusiasts, movie lovers, and binge-watchers alike. The website provides access to a wide collection of anime series, movies, TV shows, and web series through a streamlined and intuitive interface. Users can easily discover new content, browse different genres, and enjoy seamless streaming across desktop and mobile devices.</p>
+                  <div class="project-tags">
+                    <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://cineotaku.deadhydra.me/" target="_blank" class="project-link">
+                      CineOtaku
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ── EXPERIENCE ── -->
+      <section class="section-wrap fade-up">
+        <div class="section-inner">
+          <div class="fade-up-sm">
+            <div class="sec-header p2">
+              <p class="sec-label">My Journey</p>
+              <h2 class="sec-title">Professional Experience</h2>
+              <p class="sec-desc">A timeline of my career path, showcasing the roles and technologies I've worked with in various projects and companies.</p>
+            </div>
+          </div>
+          <div class="timeline p2" style="padding-top:0">
+
+            <!-- CareerEdge COO/CTO -->
+            <div class="tl-item fade-up-sm">
+              <button class="tl-trigger" onclick="toggleItem(this.closest('.tl-item'))">
+                <div class="tl-trigger-main">
+                  <div class="tl-trigger-left">
+                    <div class="tl-logo"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="tl-info">
+                      <div class="tl-name-row"><span class="tl-name">RAAICON 2026 Research Publication</span></div>
+                      <p class="tl-role">Co-Author<span class="tl-dot">·</span>Accepted for presentation</p>
+                    </div>
+                  </div>
+                  <p class="tl-date">2026</p>
+                </div>
+                <span class="tl-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="tl-body">
+                <p class="tl-body-desc">Co-authored “CareerEdge: An AI-Powered Interview Preparation Platform with Semantic Response Evaluation,” accepted for presentation at IEEE RAAICON 2026.</p>
+              </div>
+            </div>
+
+            <div class="tl-item fade-up-sm">
+              <div class="tl-line"></div>
+              <button class="tl-trigger" onclick="toggleItem(this.closest('.tl-item'))">
+                <div class="tl-trigger-main">
+                  <div class="tl-trigger-left">
+                    <div class="tl-logo"><i class="fa-solid fa-rocket"></i></div>
+                    <div class="tl-info">
+                      <div class="tl-name-row">
+                        <span class="tl-name">CareerEdge.AI</span>
+                      </div>
+                      <p class="tl-role">COO &amp; CTO, Frontend Developer<span class="tl-dot">·</span>Full-time</p>
+                    </div>
+                  </div>
+                  <p class="tl-date">27 Jun 2025 – 3 Sep 2025</p>
+                </div>
+                <span class="tl-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="tl-body">
+                <p class="tl-body-desc">COO &amp; CTO and Frontend Developer for CareerEdge.AI, an AI-powered interview practice platform for real-world interview simulation, role-specific question generation, and automated response feedback. Selected for the UIHP Launchpad Program, funded by the Bangladesh Hi-Tech Park Authority and the World Bank, and awarded Pre-Seed funding for product development and future scalability.</p>
+                <div class="project-tags">
+                  <span class="tag">React.js</span><span class="tag">Tailwind CSS</span><span class="tag">Chart.js</span><span class="tag">Framer Motion</span><span class="tag">Vite</span><span class="tag">Git</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- PECCII Research -->
+            <div class="tl-item fade-up-sm">
+              <button class="tl-trigger" onclick="toggleItem(this.closest('.tl-item'))">
+                <div class="tl-trigger-main">
+                  <div class="tl-trigger-left">
+                    <div class="tl-logo"><i class="fa-solid fa-flask"></i></div>
+                    <div class="tl-info">
+                      <div class="tl-name-row"><span class="tl-name">PECCII 2026 Research</span></div>
+                      <p class="tl-role">Co-Author / Research Contributor<span class="tl-dot">·</span>UITS</p>
+                    </div>
+                  </div>
+                  <p class="tl-date">1 Jan 2026 – 6 Mar 2026</p>
+                </div>
+                <span class="tl-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="tl-body">
+                <p class="tl-body-desc">Co-authored “Advancing Early Chronic Kidney Disease Prediction: An Optimized Machine Learning Framework.” The paper was published in IEEE and added to IEEE Xplore on 27 August 2026 under PECCII 2026 (DOI: 10.1109/PECCII70991.2026.11661906). Utilized XGBoost, LightGBM, and Kolmogorov–Arnold Networks, achieving up to 98.2% prediction accuracy.</p>
+                <div class="project-tags">
+                  <span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">LightGBM</span><span class="tag">Kaggle</span><span class="tag">Gemini API</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tl-item fade-up-sm">
+              <button class="tl-trigger" onclick="toggleItem(this.closest('.tl-item'))">
+                <div class="tl-trigger-main">
+                  <div class="tl-trigger-left">
+                    <div class="tl-logo"><i class="fa-solid fa-flask"></i></div>
+                    <div class="tl-info">
+                      <div class="tl-name-row"><span class="tl-name">ICEFronT 2026 Research</span></div>
+                      <p class="tl-role">Co-Author / Research Contributor<span class="tl-dot">·</span>UITS</p>
+                    </div>
+                  </div>
+                  <p class="tl-date">17 Dec 2025 – 15 Mar 2026</p>
+                </div>
+                <span class="tl-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="tl-body">
+                <p class="tl-body-desc">Co-authored “Advancing Automated Diabetic Foot Ulcer Detection: A Deep Learning-Based Medical Image Classification Framework,” submitted to ICEFronT 2026. Developed and evaluated CNN, MobileNetV2, EfficientNetB0, and ResNet50 models, achieving 99.58% accuracy with EfficientNetB0.</p>
+                <div class="project-tags">
+                  <span class="tag">Python</span><span class="tag">CNN</span><span class="tag">MobileNetV2</span><span class="tag">EfficientNetB0</span><span class="tag">ResNet50</span><span class="tag">Deep Learning</span>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ── EDUCATION ── -->
+      <section class="section-wrap fade-up">
+        <div class="section-inner">
+          <div class="sec-header p2 fade-up-sm">
+            <p class="sec-label">Education</p>
+            <h2 class="sec-title">Academic Background</h2>
+            <p class="sec-desc">My educational journey that shaped my foundation in technology and problem-solving.</p>
+          </div>
+          <div class="edu-list p2" style="padding-top:0">
+
+            <div class="edu-item fade-up-sm">
+              <span class="edu-line"></span>
+              <div class="edu-left">
+                <div class="edu-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="edu-info">
+                  <h3 class="edu-name">University of Information Technology and Sciences</h3>
+                  <p class="edu-sub">
+                    B.Sc in Computer Science and Engineering
+                    <span class="tl-dot">·</span>
+                    <span class="edu-loc">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                      Nayanagar, Notun Bazar, Dhaka-1212
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <p class="edu-date">17 Sep 2022 – 30 Sep 2026</p>
+            </div>
+
+            <div class="edu-item fade-up-sm">
+              <span class="edu-line"></span>
+              <div class="edu-left">
+                <div class="edu-logo"><i class="fa-solid fa-school"></i></div>
+                <div class="edu-info">
+                  <h3 class="edu-name">Dr Mahbubur Rahman Mollah College</h3>
+                  <p class="edu-sub">
+                    Higher Secondary Certificate (HSC) — Science
+                    <span class="tl-dot">·</span>
+                    <span class="edu-loc">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                      Jatrabari, Dhaka
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <p class="edu-date">30 Jun 2019 – 13 Feb 2021</p>
+            </div>
+
+            <div class="edu-item fade-up-sm">
+              <div class="edu-left">
+                <div class="edu-logo"><i class="fa-solid fa-book"></i></div>
+                <div class="edu-info">
+                  <h3 class="edu-name">Jibnagar High School</h3>
+                  <p class="edu-sub">
+                    Secondary School Certificate (SSC) — Science
+                    <span class="tl-dot">·</span>
+                    <span class="edu-loc">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                      Chatkhil, Noakhali
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <p class="edu-date">3 Jan 2015 – 6 May 2019</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ── SKILLS ── -->
+      <section class="section-wrap fade-up">
+        <div class="section-inner">
+          <div class="sec-header p2 fade-up-sm">
+            <p class="sec-label">My Skills</p>
+            <h2 class="sec-title">The tools I reach for every day</h2>
+            <p class="sec-desc">A curated mix of frameworks, runtimes, and services that help me craft reliable, performant user experiences across the stack.</p>
+          </div>
+          <div class="skills-grid fade-up-sm">
+            <div class="skill-cell"><i class="fa-brands fa-react"></i><span>React.js</span></div>
+            <div class="skill-cell"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+            <div class="skill-cell">
+              <!-- Next.js SVG -->
+              <svg width="32" height="32" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <mask id="m1" maskUnits="userSpaceOnUse">
+    <circle cx="90" cy="90" fill="white" r="90"/> <!-- ← white, not black -->
+  </mask>
+  <g mask="url(#m1)">
+    <circle cx="90" cy="90" fill="#000000" r="90"/>
+    <path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="url(#ng1)"/>
+    <rect fill="url(#ng2)" height="72" width="12" x="115" y="54"/>
+  </g>
+  <defs>
+    <linearGradient id="ng1" x1="109" x2="144.5" y1="116.5" y2="160.5" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="ng2" x1="121" x2="120.799" y1="54" y2="106.875" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>
+<span>Next.js</span>
+            </div>
+            <div class="skill-cell">
+              <svg viewBox="0 0 100 100" fill="none"><path d="M0 0H100V100H0V0Z" fill="#017ACB"/><path d="M48.0157 37.0312H52.8126V45.3125H39.8438V82.1562L39.5 82.25C39.0313 82.375 32.8594 82.375 31.5313 82.2344L30.4688 82.1406V45.3125H17.5V37.0312L21.6094 36.9844C23.8594 36.9531 29.6406 36.9531 34.4532 36.9844C39.2657 37.0156 45.3594 37.0312 48.0157 37.0312ZM84.6251 78.25C82.7189 80.2656 80.672 81.3906 77.2657 82.3125C75.7813 82.7187 75.5313 82.7344 72.1876 82.7188C68.8438 82.7031 68.5782 82.7031 66.9532 82.2812C62.7501 81.2031 59.3594 79.0937 57.0469 76.1094C56.3907 75.2656 55.3126 73.5156 55.3126 73.2969C55.3126 73.2344 55.4688 73.0937 55.6719 73C55.8751 72.9062 56.2969 72.6406 56.6407 72.4375C56.9844 72.2344 57.6094 71.8594 58.0313 71.6406C58.4532 71.4219 59.6719 70.7031 60.7345 70.0625C61.797 69.4219 62.7657 68.9062 62.8751 68.9062C62.9845 68.9062 63.1876 69.125 63.3438 69.3906C64.2813 70.9687 66.4688 72.9844 68.0157 73.6719C68.9688 74.0781 71.0782 74.5312 72.0938 74.5312C73.0313 74.5312 74.7501 74.125 75.672 73.7031C76.6563 73.25 77.1564 72.7969 77.7501 71.8906C78.1564 71.25 78.2032 71.0781 78.1876 69.8594C78.1876 68.7344 78.1251 68.4219 77.8126 67.9062C76.9376 66.4687 75.7501 65.7187 70.9376 63.5937C65.9688 61.3906 63.7345 60.0781 61.9219 58.3125C60.5782 57 60.3126 56.6406 59.4688 55C58.3751 52.8906 58.2344 52.2031 58.2188 49.0625C58.2032 46.8594 58.2501 46.1406 58.4844 45.3906C58.8126 44.2656 59.8751 42.0937 60.3594 41.5469C61.3594 40.375 61.7188 40.0156 62.422 39.4375C64.547 37.6875 67.8595 36.5312 71.0313 36.4219C71.3907 36.4219 72.5782 36.4844 73.6876 36.5625C76.8751 36.8281 79.047 37.6094 81.1407 39.2812C82.7189 40.5312 85.1095 43.4688 84.8751 43.8594C84.7189 44.0938 78.4845 48.25 78.0782 48.375C77.8282 48.4531 77.6564 48.3594 77.3126 47.9531C75.1876 45.4062 74.3282 44.8594 72.2657 44.7344C70.797 44.6406 70.0157 44.8125 69.0313 45.4687C68.0001 46.1562 67.5001 47.2031 67.5001 48.6562C67.5157 50.7812 68.3282 51.7812 71.3282 53.2656C73.2657 54.2187 74.922 55 75.047 55C75.2345 55 79.2501 57 80.297 57.625C85.172 60.4844 87.1564 63.4219 87.672 68.4844C88.047 72.2969 86.9689 75.7812 84.6251 78.25Z" fill="white"/></svg>
+              <span>TypeScript</span>
+            </div>
+            <div class="skill-cell"><i class="fa-brands fa-node-js"></i><span>Node.js</span></div>
+            <div class="skill-cell"><i class="fa-brands fa-python"></i><span>Python</span></div>
+            <div class="skill-cell"><i class="fa-solid fa-database"></i><span>MongoDB</span></div>
+            <div class="skill-cell">
+              <svg viewBox="0 0 100 100" fill="none"><path d="M50.0002 20C36.6665 20 28.3334 26.665 24.9996 39.9937C30.0002 33.3287 35.8337 30.8303 42.4999 32.4959C46.3039 33.4463 49.0224 36.206 52.0323 39.2597C56.9341 44.234 62.6075 49.9912 75.0009 49.9912C88.3334 49.9912 96.6677 43.3262 100 29.9962C95.0009 36.6612 89.1674 39.1609 82.4999 37.4953C78.6973 36.5449 75.9787 33.7851 72.9689 30.7315C68.067 25.7571 62.3924 20 50.0002 20ZM24.9996 49.9912C11.6671 49.9912 3.33274 56.6562 0.000244141 69.9862C4.99962 63.3212 10.8331 60.8215 17.5006 62.4884C21.3032 63.44 24.0218 66.1985 27.0316 69.2509C31.9335 74.2252 37.6081 79.9836 50.0002 79.9836C63.334 79.9836 71.6671 73.3187 75.0009 59.9887C70.0002 66.6537 64.1668 69.1534 57.5006 67.4865C53.6966 66.5374 50.9781 63.7763 47.9682 60.724C43.0664 55.7496 37.393 49.9912 24.9996 49.9912Z" fill="#06B6D4"/></svg>
+              <span>Tailwind</span>
+            </div>
+            <div class="skill-cell"><i class="fa-brands fa-git-alt"></i><span>Git</span></div>
+            <div class="skill-cell"><i class="fa-brands fa-github"></i><span>GitHub</span></div>
+            <div class="skill-cell"><i class="fa-brands fa-firebase" style="font-size:18px"></i><i class="fa-solid fa-fire" style="color:#FFA000"></i><span>Firebase</span></div>
+            <div class="skill-cell"><i class="fa-solid fa-cloud"></i><span>Vercel</span></div>
+            <div class="skill-cell"><i class="fa-brands fa-cloudflare"></i><span>Cloudflare</span></div>
+            <div class="skill-cell"><i class="fa-solid fa-code"></i><span>Express.js</span></div>
+            <div class="skill-cell"><img src="https://img.icons8.com/?size=256&id=40669&format=png" alt="Postman" width="20" height="20"><span>C++</span></div>
+            <div class="skill-cell">
+              <svg viewBox="0 0 48 46" fill="none"><path fill="#863bff" d="M25.946 44.938c-.664.845-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.287c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.497 0-3.578-1.842-3.578H1.237c-.92 0-1.456-1.04-.92-1.788L10.013.474c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.579 1.842 3.579h11.377c.943 0 1.473 1.088.89 1.83L25.947 44.94z"/></svg>
+              <span>Vite</span>
+            </div>
+            <div class="skill-cell"><i class="fa-brands fa-linux"></i><span>Kali Linux</span></div>
+            <div class="skill-cell"><i class="fa-solid fa-network-wired"></i><span>REST APIs</span></div>
+            <div class="skill-cell"><i class="fa-solid fa-wand-magic-sparkles"></i><span>XGBoost</span></div>
+            <div class="skill-cell"><i class="fa-solid fa-c"></i><span>C</span></div>
+            <div class="skill-cell"><i class="fa-solid fa-database"></i><span>Firestore</span></div>
+            <div class="skill-cell"><i class="fa-brands fa-figma"></i><span>Figma</span></div>
+            <div class="skill-cell"><i class="fa-solid fa-paintbrush"></i><span>Photoshop</span></div>
+            <div class="skill-cell"><i class="fa-solid fa-film"></i><span>Premiere Pro</span></div>
+            <div class="skill-cell"><i class="fa-solid fa-c"></i><span>Canva</span></div>
+            <div class="skill-cell"><i class="fa-solid fa-database"></i><span>SQL</span></div>
+            <div class="skill-cell"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg"
+     alt="Bootstrap"
+     width="20"
+     height="20"><span>Bootstrap</span></div>
+            <div class="skill-cell"><img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="Postman" width="20" height="20"><span>Postman</span></div>
+            <div class="skill-cell"><i class="fa-solid fa-burst"></i><span>Netlify</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── LANGUAGES & SPECIAL SKILLS ── -->
+      <section class="section-wrap fade-up">
+        <div class="section-inner">
+          <div class="sec-header p2 fade-up-sm">
+            <p class="sec-label">Additional Profile</p>
+            <h2 class="sec-title">Languages &amp; special skills</h2>
+            <p class="sec-desc"><strong>Languages:</strong> Bangla (mother tongue), English (Higher Intermediate).</p>
+            <p class="sec-desc"><strong>Multimedia and content:</strong> Kinemaster, Adobe Photoshop, Adobe Lightroom, Adobe Premiere Pro, Canva, PowerPoint, After Effects, and DaVinci Resolve.</p>
+            <p class="sec-desc"><strong>Specialties:</strong> Web development, startup management, ML models with Kaggle datasets, Gemini API integration, and prediction models with Python and XGBoost.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── CERTIFICATIONS ── -->
+      <section class="section-wrap fade-up">
+        <div class="section-inner">
+          <div class="sec-header p2 fade-up-sm">
+            <p class="sec-label">Recognition</p>
+            <h2 class="sec-title">Courses &amp; Certifications</h2>
+            <p class="sec-desc">Verified achievements across development, research, and innovation programs.</p>
+          </div>
+          <div class="timeline p2" style="padding-top:0">
+
+            <div class="tl-item fade-up-sm">
+              <div class="tl-line"></div>
+              <button class="tl-trigger" onclick="toggleItem(this.closest('.tl-item'))">
+                <div class="tl-trigger-main">
+                  <div class="tl-trigger-left">
+                    <div class="tl-logo"><i class="fa-solid fa-trophy"></i></div>
+                    <div class="tl-info">
+                      <div class="tl-name-row"><span class="tl-name">UIHP Launchpad — Cohort 6</span></div>
+                      <p class="tl-role">Certificate of Participation &amp; Pre-Seed Funding<span class="tl-dot">·</span>World Bank</p>
+                    </div>
+                  </div>
+                  <p class="tl-date">Aug – Sep 2025</p>
+                </div>
+                <span class="tl-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="tl-body">
+                <p class="tl-body-desc">CareerEdge.AI was selected for the University Innovation Hub Program (UIHP) Launchpad. Based on performance during the program, secured Pre-Seed Funding to further develop the project. The program is supported by Bangladesh Hi-Tech Park Authority and the World Bank.</p>
+              </div>
+            </div>
+
+                        <div class="tl-item fade-up-sm">
+              <div class="tl-line"></div>
+              <button class="tl-trigger" onclick="toggleItem(this.closest('.tl-item'))">
+                <div class="tl-trigger-main">
+                  <div class="tl-trigger-left">
+                    <div class="tl-logo"><i class="fa-solid fa-award"></i></div>
+                    <div class="tl-info">
+                      <div class="tl-name-row"><span class="tl-name">PECCII 2026 — Research Paper</span></div>
+                      <p class="tl-role">Co-authored research paper on CKD prediction<span class="tl-dot">·</span>Certificate</p>
+                    </div>
+                  </div>
+                  <p class="tl-date">2026</p>
+                </div>
+                <span class="tl-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="tl-body">
+                <p class="tl-body-desc">Co-authored research paper "Advancing Early Chronic Kidney Disease Prediction: An Optimized Machine Learning Framework", submitted to the International Conference on Power, Electronics, Communications, Computing, and Intelligent Infrastructure (PECCII 2026). Utilized advanced ML models achieving up to 98.2% prediction accuracy.</p>
+                <div class="project-links" style="margin-top:8px">
+                  <a href="kidney-certificate.jpeg" target="_blank" class="project-link">
+                    View Certificate
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+<div class="tl-item fade-up-sm">
+              <div class="tl-line"></div>
+              <button class="tl-trigger" onclick="toggleItem(this.closest('.tl-item'))">
+                <div class="tl-trigger-main">
+                  <div class="tl-trigger-left">
+                    <div class="tl-logo"><i class="fa-solid fa-microphone"></i></div>
+                    <div class="tl-info">
+                      <div class="tl-name-row"><span class="tl-name">SISE 2026 — Research Poster</span></div>
+                      <p class="tl-role">Presented CareerEdge: AI-Powered Interview Practicing Platform<span class="tl-dot">·</span>Participation Certificate</p>
+                    </div>
+                  </div>
+                  <p class="tl-date">Jan 2026</p>
+                </div>
+                <span class="tl-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="tl-body">
+                <p class="tl-body-desc">Presented research poster at SISE 2026 for CareerEdge: An AI-Powered Interview Practicing Platform. Awarded Participation Certificate for poster presentation.</p>
+              </div>
+            </div>
+
+            <div class="tl-item fade-up-sm">
+              <button class="tl-trigger" onclick="toggleItem(this.closest('.tl-item'))">
+                <div class="tl-trigger-main">
+                  <div class="tl-trigger-left">
+                    <div class="tl-logo"><i class="fa-solid fa-certificate"></i></div>
+                    <div class="tl-info">
+                      <div class="tl-name-row"><span class="tl-name">Frontend Developer (React)</span></div>
+                      <p class="tl-role">HackerRank Certification</p>
+                    </div>
+                  </div>
+                  <p class="tl-date">Mar 2026</p>
+                </div>
+                <span class="tl-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </button>
+              <div class="tl-body">
+                <p class="tl-body-desc">Verified Frontend Developer (React) certification from HackerRank.</p>
+                <div class="project-links" style="margin-top:8px">
+                  <a href="https://www.hackerrank.com/certificates/c8936e3143f6" target="_blank" class="project-link">
+                    Verify Credential
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ── CONNECT ── -->
+      <section class="section-wrap fade-up">
+        <div class="section-inner">
+          <div class="sec-header p2 fade-up-sm">
+            <p class="sec-label">Connect</p>
+            <h2 class="sec-title">Let's build together</h2>
+            <p class="sec-desc">Pick the channel that fits best — every link here stays in sync with my latest work.</p>
+          </div>
+          <div class="p2" style="padding-top:0">
+            <div class="connect-grid fade-up-sm">
+
+              <div class="connect-cell">
+                <a href="mailto:gmmillat1100@gmail.com" class="connect-link">
+                  <div class="connect-icon-wrap">
+                    <div class="connect-icon"><i class="fa-solid fa-envelope" style="font-size:14px"></i></div>
+                  </div>
+                  <div class="connect-text">
+                    <span class="connect-platform">Email</span>
+                    <span class="connect-handle">gmmillat1100@gmail.com</span>
+                  </div>
+                  <svg class="connect-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                </a>
+              </div>
+
+              <div class="connect-cell">
+                <a href="https://github.com/synt4x-an0ndo" target="_blank" rel="noopener me" class="connect-link">
+                  <div class="connect-icon-wrap">
+                    <div class="connect-icon">
+                      <svg width="16" height="16" viewBox="0 0 1024 1024" fill="currentColor"><path fill-rule="evenodd" d="M512 0C229.12 0 0 229.12 0 512c0 226.56 146.56 417.92 350.08 485.76 25.6 4.48 35.2-10.88 35.2-24.32 0-12.16-.64-52.48-.64-95.36-128.64 23.68-161.92-31.36-172.16-60.16-5.76-14.72-30.72-60.16-52.48-72.32-17.92-9.6-43.52-33.28-.64-33.92 40.32-.64 69.12 37.12 78.72 52.48 46.08 77.44 119.68 55.68 149.12 42.24 4.48-33.28 17.92-55.68 32.64-68.48-113.92-12.8-232.96-56.96-232.96-252.8 0-55.68 19.84-101.76 52.48-137.6-5.12-12.8-23.04-65.28 5.12-135.68 0 0 42.88-13.44 140.8 52.48 40.96-11.52 84.48-17.28 128-17.28s87.04 5.76 128 17.28c97.92-66.56 140.8-52.48 140.8-52.48 28.16 70.4 10.24 122.88 5.12 135.68 32.64 35.84 52.48 81.28 52.48 137.6 0 196.48-119.68 240-233.6 252.8 18.56 16 34.56 46.72 34.56 94.72 0 68.48-.64 123.52-.64 140.8 0 13.44 9.6 29.44 35.2 24.32C877.44 929.92 1024 737.92 1024 512 1024 229.12 794.88 0 512 0" clip-rule="evenodd"/></svg>
+                    </div>
+                  </div>
+                  <div class="connect-text">
+                    <span class="connect-platform">GitHub</span>
+                    <span class="connect-handle">synt4x-an0ndo</span>
+                  </div>
+                  <svg class="connect-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                </a>
+              </div>
+
+              <div class="connect-cell">
+                <a href="https://www.linkedin.com/in/gm-anondo?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener me" class="connect-link">
+                  <div class="connect-icon-wrap">
+                    <div class="connect-icon"><i class="fa-brands fa-linkedin-in" style="font-size:15px;color:#0A66C2"></i></div>
+                  </div>
+                  <div class="connect-text">
+                    <span class="connect-platform">LinkedIn</span>
+                    <span class="connect-handle">gm-anondo</span>
+                  </div>
+                  <svg class="connect-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                </a>
+              </div>
+
+              <div class="connect-cell">
+                <a href="https://www.facebook.com/user.fakefox" target="_blank" rel="noopener me" class="connect-link">
+                  <div class="connect-icon-wrap">
+                    <div class="connect-icon"><i class="fa-brands fa-facebook-f" style="font-size:15px;color:#1877F2"></i></div>
+                  </div>
+                  <div class="connect-text">
+                    <span class="connect-platform">Facebook</span>
+                    <span class="connect-handle">user.fakefox</span>
+                  </div>
+                  <svg class="connect-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                </a>
+              </div>
+
+              <div class="connect-cell">
+                <a href="https://www.instagram.com/_.gmanondo404" target="_blank" rel="noopener me" class="connect-link">
+                  <div class="connect-icon-wrap">
+                    <div class="connect-icon"><i class="fa-brands fa-instagram" style="font-size:16px;color:#E1306C"></i></div>
+                  </div>
+                  <div class="connect-text">
+                    <span class="connect-platform">Instagram</span>
+                    <span class="connect-handle">_.gmanondo404</span>
+                  </div>
+                  <svg class="connect-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                </a>
+              </div>
+
+              <div class="connect-cell">
+                <a href="tel:+8801838134612" class="connect-link">
+                  <div class="connect-icon-wrap">
+                    <div class="connect-icon"><i class="fa-solid fa-phone" style="font-size:13px"></i></div>
+                  </div>
+                  <div class="connect-text">
+                    <span class="connect-platform">Phone</span>
+                    <span class="connect-handle">(+880) 1838134612</span>
+                  </div>
+                  <svg class="connect-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                </a>
+              </div>
+
+              
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <p class="footer-logo">gmanondo.</p>
+      <p class="footer-credit">
+        Built by <a href="https://github.com/synt4x-an0ndo" rel="noopener">G.M. Millat (Anondo)</a> · Dhaka, Bangladesh 🇧🇩
+      </p>
+      <p class="footer-seo" style="font-size:11px;color:var(--muted-foreground);margin-top:4px;opacity:0.5">
+        G.M. Millat · GM Anondo · Website Developer · React · Next.js · Bangladesh
+      </p>
+    </footer>
+
+  </div><!-- .page-col -->
+
+  <div class="hatch-right"></div>
+</div><!-- .page-grid -->
+
+<script>
+// Accordion toggle
+function toggleItem(el) {
+  const isOpen = el.classList.contains('open');
+  el.classList.toggle('open', !isOpen);
+}
+
+// Scroll-triggered fade-in
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('.fade-up, .fade-up-sm').forEach(el => {
+  io.observe(el);
+});
+
+// Header border on scroll
+const hdr = document.getElementById('site-header');
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+</script>
+
 </body>
 </html>

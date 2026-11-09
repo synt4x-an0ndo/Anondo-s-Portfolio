@@ -17,139 +17,573 @@
 <meta property="og:image" content="https://gmanondo.me/g-m-millat-anondo-website-developer.jpg"/>
 <meta name="twitter:card" content="summary"/>
 
-<script>
-(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}document.documentElement.classList.add('js');})();
-</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="site.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 <style>
-.page-hero{padding:clamp(48px,8vw,104px) 0 clamp(48px,7vw,80px)}
-.back{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);margin-bottom:36px}
-.back:hover{color:var(--fg)}
-.page-title{font-size:clamp(44px,8vw,88px);font-weight:600;letter-spacing:-.055em;line-height:.95}
-.page-kicker{font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:20px}
-.page-lead{font-size:clamp(19px,2.2vw,24px);line-height:1.4;letter-spacing:-.02em;color:var(--fg-2);margin-top:24px;max-width:46ch}
-.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
-.grid-2{display:grid;gap:16px}
-@media (min-width:760px){.grid-2{grid-template-columns:1fr 1fr}}
-.panel{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);padding:clamp(20px,2.6vw,28px)}
-.person{display:flex;align-items:center;gap:16px}
-.avatar{width:72px;height:72px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--chip);flex:none;display:grid;place-items:center;font-family:var(--mono);font-size:18px;color:var(--muted)}
-.avatar img{width:100%;height:100%;object-fit:cover;object-position:50% 25%}
-.person-rel{font-family:var(--mono);font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.person-name{font-size:19px;font-weight:600;letter-spacing:-.02em;line-height:1.3;margin-top:2px}
-.person-note{font-size:14.5px;color:var(--muted);margin-top:2px}
-.panel-text{color:var(--fg-2);font-size:15px;margin-top:18px}
-.panel-foot{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
-.dl{border-top:1px solid var(--line)}
-.dl-row{display:grid;grid-template-columns:1fr;gap:4px 32px;padding:20px 0;border-bottom:1px solid var(--line)}
-@media (min-width:700px){.dl-row{grid-template-columns:170px minmax(0,1fr)}}
-.dl-row dt{font-size:14px;color:var(--muted)}
-.dl-row dd{font-size:16px;font-weight:500}
-.dl-row dd small{display:block;font-size:14px;font-weight:400;color:var(--muted);margin-top:2px}
-.svc-num{font-family:var(--mono);font-size:12px;color:var(--accent)}
-.svc h3{font-size:18px;font-weight:600;letter-spacing:-.02em;margin:10px 0 6px}
-.svc p{color:var(--fg-2);font-size:15px}
-.browser{border:1px solid var(--line-strong);border-radius:10px;overflow:hidden;background:var(--bg-elev);box-shadow:var(--shadow)}
-.browser-bar{display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid var(--line)}
-.browser-bar i{width:9px;height:9px;border-radius:50%;background:var(--line-strong)}
-.browser-bar span{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-left:10px}
-.browser img{width:100%;height:auto}
-.points{list-style:none;margin-top:28px;border-top:1px solid var(--line)}
-.points li{display:grid;grid-template-columns:1fr;gap:2px 32px;padding:16px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--fg-2)}
-@media (min-width:700px){.points li{grid-template-columns:200px minmax(0,1fr)}}
-.points b{color:var(--fg);font-weight:600}
-.cta-title{font-size:clamp(34px,5.6vw,64px);font-weight:600;letter-spacing:-.05em;line-height:1}
-.cta-text{color:var(--fg-2);font-size:17px;margin-top:16px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --background:#0a0a0a;
+  --foreground:#e8e8e8;
+  --muted-foreground:#888;
+  --border:#262626;
+  --muted:#1a1a1a;
+  --accent:#1f1f1f;
+  --pattern-fg:rgba(255,255,255,0.06);
+  --primary:#e8e8e8;
+  --primary-fg:#0a0a0a;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--background);
+  color:var(--foreground);
+  font-family:'Space Grotesk',sans-serif;
+  font-size:15px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{color:inherit;text-decoration:none}
+
+/* ── OUTER GRID (3-col with hatched sides) ── */
+.page-grid{
+  position:relative;
+  display:grid;
+  min-height:100vh;
+  width:100%;
+  grid-template-columns:1fr min(50rem,calc(100% - 3rem)) 1fr;
+}
+
+.hatch-left{
+  grid-column:1;
+  grid-row:1/-1;
+  border-right:1px dashed var(--pattern-fg);
+  background-image:repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 4px,
+    var(--pattern-fg) 4px,
+    var(--pattern-fg) 5px
+  );
+}
+.hatch-right{
+  grid-column:3;
+  grid-row:1/-1;
+  border-left:1px dashed var(--pattern-fg);
+  background-image:repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 4px,
+    var(--pattern-fg) 4px,
+    var(--pattern-fg) 5px
+  );
+}
+
+.page-col{
+  grid-column:2;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+
+/* ── HEADER / NAV ── */
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  justify-content:center;
+  background:rgba(10,10,10,0.85);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;
+  transition:border-color .2s;
+}
+header.scrolled{border-bottom-color:var(--border)}
+
+.header-inner{
+  display:flex;
+  align-items:center;
+  height:56px;
+  width:100%;
+  max-width:50rem;
+  justify-content:space-between;
+  gap:12px;
+  padding:0 16px;
+}
+
+.logo{
+  flex-shrink:0;
+  font-size:15px;
+  font-weight:500;
+  letter-spacing:-.02em;
+}
+.logo:hover{opacity:.8}
+
+nav{display:flex;align-items:center;gap:2px;flex-shrink:0}
+
+.nav-link{
+  display:flex;
+  align-items:center;
+  height:32px;
+  border-radius:9999px;
+  padding:0 12px;
+  font-size:13px;
+  color:var(--muted-foreground);
+  transition:color .15s;
+}
+.nav-link:hover{color:var(--foreground)}
+
+/* ── SECTION WRAPPER (with top/bottom 1px lines) ── */
+.section-wrap{
+  position:relative;
+  isolation:isolate;
+  width:100%;
+  overflow:visible;
+}
+.section-wrap::before,
+.section-wrap::after{
+  content:'';
+  pointer-events:none;
+  position:absolute;
+  left:0;right:0;
+  height:1px;
+  background:var(--pattern-fg);
+}
+.section-wrap::before{top:0}
+.section-wrap::after{bottom:0}
+
+.section-inner{
+  position:relative;
+  margin:0 auto;
+  width:100%;
+  max-width:50rem;
+  display:flex;
+  flex-direction:column;
+  gap:32px;
+}
+
+/* ── HERO ── */
+.hero-section .section-inner{padding:0}
+
+.hero-body{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding:8px;
+}
+@media(min-width:768px){
+  .hero-body{flex-direction:row}
+}
+
+.hero-avatar{
+  position:relative;
+  width:112px;
+  height:112px;
+  flex-shrink:0;
+  align-self:flex-start;
+}
+@media(min-width:768px){
+  .hero-avatar{width:128px;height:128px;margin-top:10px}
+}
+
+.hero-avatar-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:6px;
+  border:1px solid var(--border);
+  box-shadow:0 4px 16px rgba(0,0,0,.4);
+}
+
+.hero-avatar-placeholder{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:6px;
+  border:1px solid var(--border);
+  background:linear-gradient(135deg,#1c1c1c,#222);
+  font-family:'JetBrains Mono',monospace;
+  font-size:32px;
+  font-weight:600;
+  color:var(--muted-foreground);
+  letter-spacing:-.04em;
+}
+
+.hero-text{display:flex;flex-direction:column;gap:8px}
+
+.hero-name{
+  font-size:clamp(1.75rem,5vw,2.25rem);
+  font-weight:500;
+  letter-spacing:-.04em;
+  line-height:1.1;
+}
+
+.hero-subtitle{
+  font-size:13px;
+  letter-spacing:.2em;
+  color:var(--muted-foreground);
+  font-family:'JetBrains Mono',monospace;
+}
+
+.hero-bio{
+  font-size:15px;
+  line-height:1.75;
+  color:var(--muted-foreground);
+}
+
+.hero-ctas{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px;
+  padding-top:4px;
+}
+
+/* ── BUTTONS ── */
+.btn{
+  position:relative;
+  display:inline-flex;
+  flex-shrink:0;
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  white-space:nowrap;
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:-.01em;
+  outline:none;
+  transition:all .15s ease-out;
+  border-radius:6px;
+  height:36px;
+  padding:0 16px;
+  font-family:'Space Grotesk',sans-serif;
+  text-decoration:none;
+}
+.btn:active{transform:scale(.97)}
+
+.btn-primary{
+  background:var(--primary);
+  color:var(--primary-fg);
+  border:1px solid rgba(255,255,255,.08);
+  background-image:linear-gradient(to bottom,rgba(255,255,255,.14),transparent,rgba(0,0,0,.10));
+  box-shadow:0 1px 2px -.5px rgba(0,0,0,.18),0 3px 8px -2px rgba(0,0,0,.10);
+}
+.btn-primary:hover{
+  background:#ccc;
+  box-shadow:0 2px 4px -.5px rgba(0,0,0,.22),0 6px 18px -3px rgba(0,0,0,.14);
+}
+
+.btn-outline{
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--foreground);
+  box-shadow:0 1px 2px rgba(0,0,0,.04);
+  height:32px;
+  gap:6px;
+  padding:0 12px;
+}
+.btn-outline:hover{
+  border-color:rgba(255,255,255,.25);
+  background:var(--accent);
+}
+
+kbd{
+  pointer-events:none;
+  display:inline-flex;
+  height:20px;
+  min-width:20px;
+  align-items:center;
+  justify-content:center;
+  border-radius:3px;
+  background:var(--muted);
+  padding:0 4px;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:11px;
+  font-weight:500;
+  color:var(--muted-foreground);
+}
+.btn-primary kbd{background:rgba(0,0,0,.15);color:rgba(0,0,0,.6)}
+
+/* ── SECTION HEADER ── */
+.sec-header{display:flex;flex-direction:column;gap:8px;padding:8px}
+
+.sec-label{
+  font-size:13px;
+  letter-spacing:.2em;
+  color:var(--muted-foreground);
+  font-family:'JetBrains Mono',monospace;
+}
+
+.sec-title{
+  font-size:clamp(1.5rem,4vw,2.25rem);
+  font-weight:500;
+  letter-spacing:-.04em;
+  color:var(--foreground);
+}
+
+.sec-desc{
+  font-size:15px;
+  line-height:1.75;
+  color:var(--muted-foreground);
+}
+
+/* ── FAMILY GRID ── */
+.family-grid{
+  display:grid;
+  gap:24px;
+  padding:8px;
+}
+
+.family-card{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  padding:16px;
+  border:1px solid var(--border);
+  border-radius:6px;
+  background:var(--muted);
+  transition:border-color .15s, background .15s;
+}
+.family-card:hover{border-color:rgba(255,255,255,.25);background:var(--accent)}
+
+.family-card-header{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.family-avatar{
+  width:80px;
+  height:80px;
+  flex-shrink:0;
+  border-radius:6px;
+  border:1px solid var(--border);
+  object-fit:cover;
+  background:linear-gradient(135deg,#2c2c2c,#1c1c1c);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  color:var(--muted-foreground);
+}
+
+.family-info{display:flex;flex-direction:column;gap:4px}
+
+.family-relation{
+  font-size:13px;
+  letter-spacing:.1em;
+  color:var(--muted-foreground);
+  font-family:'JetBrains Mono',monospace;
+  text-transform:uppercase;
+}
+
+.family-name{
+  font-size:1.2rem;
+  font-weight:500;
+  letter-spacing:-.02em;
+}
+
+.family-detail{
+  font-size:13px;
+  color:var(--muted-foreground);
+}
+
+/* ── FOOTER ── */
+footer{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  height:96px;gap:4px;text-align:center;
+}
+.footer-logo{font-size:18px;font-weight:500}
+.footer-credit{font-size:13px;color:var(--muted-foreground)}
+.footer-credit a{transition:color .15s}
+.footer-credit a:hover{color:var(--primary);text-decoration:underline;text-underline-offset:3px}
+
+/* ── SPACING ── */
+.p2{padding:8px}
+.pt0{padding-top:0}
+
+/* ── ANIMATIONS ── */
+.fade-up{
+  opacity:0;transform:translateY(12px);filter:blur(8px);
+  transition:opacity .5s ease,transform .5s ease,filter .5s ease;
+}
+.fade-up.visible{opacity:1;transform:none;filter:none}
+
+.fade-up-sm{
+  opacity:0;transform:translateY(8px);filter:blur(6px);
+  transition:opacity .4s ease,transform .4s ease,filter .4s ease;
+}
+.fade-up-sm.visible{opacity:1;transform:none;filter:none}
+
+/* ── MAIN CONTENT ── */
+main{flex:1;display:flex;flex-direction:column}
+
+/* ── MOBILE ── */
+@media(max-width:480px){
+  .hero-ctas .btn-outline{height:28px;font-size:12px;padding:0 10px}
+  .family-grid{grid-template-columns:1fr}
+}
+
+@media(min-width:640px){
+  .family-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ── QUICK FACTS ── */
+.facts-card{border:1px solid var(--border);border-radius:16px;padding:10px 22px;background:var(--muted)}
+.fact-row{display:flex;gap:18px;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--border);font-size:14.5px}
+.fact-row:last-child{border-bottom:none}
+.fact-k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-foreground);padding-top:3px;flex:none}
+.fact-v{text-align:right}
+.fact-sub{display:block;font-size:12px;color:var(--muted-foreground);margin-top:3px}
 </style>
 </head>
 <body>
-<a class="skip" href="#main-content">Skip to content</a>
-<header class="site-header">
-  <div class="wrap header-inner">
-    <a href="/" class="logo" aria-label="GM Anondo — home"><span class="logo-mark">GM</span>gmanondo</a>
-    <nav class="nav" aria-label="Primary">
-      <a href="/" class="nav-link">Portfolio</a>
-      <a href="/#contact" class="nav-link hide-sm">Contact</a>
-      <span class="nav-sep" aria-hidden="true"></span>
-      <button class="icon-btn theme-toggle" type="button" aria-label="Toggle dark mode">
-        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-      </button>
-    </nav>
-  </div>
-</header>
 
-<main id="main-content">
-  <section class="page-hero">
-    <div class="wrap reveal">
-      <a href="/" class="back"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>Back to portfolio</a>
-      <h1 class="page-title">Family Status</h1>
-      <p class="page-kicker">Family Information of GM Anondo</p>
-      <p class="page-lead">This page contains information about my family members. It's a tribute to the people who have shaped my life and continue to support my journey.</p>
-    </div>
-  </section>
+<div class="page-grid">
+  <div class="hatch-left"></div>
 
-  <section class="sec">
-    <div class="wrap sec-grid">
-      <header class="sec-head reveal">
-        <span class="sec-num">01 — Quick facts</span>
-        <h2 class="sec-title">Parents &amp; family of Gm Anondo</h2>
-        <p class="sec-desc">The short answer first — exactly who is who in my family.</p>
-      </header>
-      <dl class="dl reveal">
-        <div class="dl-row"><dt>Father</dt><dd>Md. Anwar Hossain Gazi<small>Senior Teacher (Mathematics) · Jib Nagar M.L High School</small><small>Md. Anwar Hossain Gazi is the father of Anondo (GM Anondo).</small></dd></div>
-        <div class="dl-row"><dt>Mother</dt><dd>Sultana Razia</dd></div>
-        <div class="dl-row"><dt>Sisters</dt><dd>Nowshin Tabassum and Muntaha Tabassum</dd></div>
-        <div class="dl-row"><dt>Son</dt><dd>Gm Anondo (G.M. Millat)</dd></div>
-      </dl>
-    </div>
-  </section>
+  <div class="page-col">
 
-  <section class="sec">
-    <div class="wrap sec-grid">
-      <header class="sec-head reveal">
-        <span class="sec-num">02 — Family</span>
-        <h2 class="sec-title">My loved ones</h2>
-        <p class="sec-desc">The people closest to my heart who have been instrumental in my growth and success.</p>
-      </header>
-      <div class="grid-2">
-        <div class="panel reveal"><div class="person">
-          <div class="avatar"><img src="father.jpeg" alt="Md. Anwar Hossain Gazi, father of GM Anondo (G.M. Millat)" width="72" height="72" loading="lazy"/></div>
-          <div><p class="person-rel">Father</p><h3 class="person-name">Md. Anwar Hossain Gazi</h3><p class="person-note">My guiding light and role model</p></div>
-        </div></div>
-        <div class="panel reveal"><div class="person">
-          <div class="avatar" aria-hidden="true">SR</div>
-          <div><p class="person-rel">Mother</p><h3 class="person-name">Sultana Razia</h3><p class="person-note">My greatest strength and inspiration</p></div>
-        </div></div>
-        <div class="panel reveal"><div class="person">
-          <div class="avatar" aria-hidden="true">NT</div>
-          <div><p class="person-rel">Younger sister</p><h3 class="person-name">Nowshin Tabassum</h3><p class="person-note">(Nowshin) — Always there for me</p></div>
-        </div></div>
-        <div class="panel reveal"><div class="person">
-          <div class="avatar" aria-hidden="true">MT</div>
-          <div><p class="person-rel">Younger sister</p><h3 class="person-name">Muntaha Tabassum</h3><p class="person-note">(Arshi) — My little sunshine</p></div>
-        </div></div>
+    <!-- HEADER -->
+    <header id="site-header">
+      <div class="header-inner">
+        <a href="/" class="logo">gmanondo.</a>
+        <nav>
+          <a href="/" class="nav-link">Back to Portfolio</a>
+        </nav>
       </div>
-    </div>
-  </section>
-</main>
+    </header>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-inner">
-      <p>© 2026 G.M. Millat (Anondo) · Dhaka, Bangladesh</p>
-      <nav class="footer-links" aria-label="Footer">
-        <a href="/">Portfolio</a>
-        <a href="/the-raw-bros">The Raw Bros</a>
-        <a href="/parents">Family</a>
-        <a href="anondo-cv.pdf" target="_blank" rel="noopener">CV</a>
-      </nav>
-    </div>
-  </div>
-</footer>
+    <main id="main-content">
+
+      <!-- ── HERO ── -->
+      <section class="section-wrap hero-section">
+        <div class="section-inner">
+          <div class="hero-body fade-up">
+            <div class="hero-text">
+              <div class="fade-up-sm">
+                <h1 class="hero-name">Family Status</h1>
+                <p class="hero-subtitle">Family Information of GM Anondo</p>
+              </div>
+              <p class="hero-bio fade-up-sm">
+                This page contains information about my family members. It's a tribute to the people who have shaped my life and continue to support my journey.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+            <!-- ── QUICK FACTS ── -->
+      <section class="section-wrap fade-up">
+        <div class="section-inner">
+          <div class="fade-up-sm">
+            <div class="sec-header p2">
+              <p class="sec-label">Quick Facts</p>
+              <h2 class="sec-title">Parents &amp; family of Gm Anondo</h2>
+              <p class="sec-desc">The short answer first — exactly who is who in my family.</p>
+            </div>
+          </div>
+          <div class="facts-card p2 fade-up-sm">
+            <div class="fact-row"><span class="fact-k">Father</span><span class="fact-v">Md. Anwar Hossain Gazi<span class="fact-sub">Senior Teacher (Mathematics) · Jib Nagar M.L High School</span><span class="fact-sub">Md. Anwar Hossain Gazi is the father of Anondo (GM Anondo).</span></span></div>
+            <div class="fact-row"><span class="fact-k">Mother</span><span class="fact-v">Sultana Razia</span></div>
+            <div class="fact-row"><span class="fact-k">Sisters</span><span class="fact-v">Nowshin Tabassum and Muntaha Tabassum</span></div>
+            <div class="fact-row"><span class="fact-k">Son</span><span class="fact-v">Gm Anondo (G.M. Millat)</span></div>
+          </div>
+        </div>
+      </section>
+
+<!-- ── FAMILY MEMBERS ── -->
+      <section class="section-wrap fade-up">
+        <div class="section-inner">
+          <div class="fade-up-sm">
+            <div class="sec-header p2">
+              <p class="sec-label">Family</p>
+              <h2 class="sec-title">My Loved Ones</h2>
+              <p class="sec-desc">The people closest to my heart who have been instrumental in my growth and success.</p>
+            </div>
+          </div>
+          <div class="family-grid fade-up-sm">
+
+            <!-- Father -->
+            <div class="family-card fade-up-sm">
+              <div class="family-card-header">
+                <div class="family-avatar">
+                  <img src="father.jpeg" alt="Md. Anwar Hossain Gazi, father of GM Anondo (G.M. Millat)"  height="80" loading="lazy">
+                </div>
+                <div class="family-info">
+                  <p class="family-relation">Father</p>
+                  <h3 class="family-name">Md. Anwar Hossain Gazi</h3>
+                  <p class="family-detail">My guiding light and role model</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mother -->
+            <div class="family-card fade-up-sm">
+              <div class="family-card-header">
+                <div class="family-avatar">
+                  <i class="fa-solid fa-heart" style="color:#ff69b4"></i>
+                </div>
+                <div class="family-info">
+                  <p class="family-relation">Mother</p>
+                  <h3 class="family-name">Sultana Razia</h3>
+                  <p class="family-detail">My greatest strength and inspiration</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sister 1: Nowshin -->
+            <div class="family-card fade-up-sm">
+              <div class="family-card-header">
+                <div class="family-avatar">
+                  <i class="fa-solid fa-star" style="color:#ffd700"></i>
+                </div>
+                <div class="family-info">
+                  <p class="family-relation">Younger Sister</p>
+                  <h3 class="family-name">Nowshin Tabassum</h3>
+                  <p class="family-detail">(Nowshin) — Always there for me</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sister 2: Muntaha -->
+            <div class="family-card fade-up-sm">
+              <div class="family-card-header">
+                <div class="family-avatar">
+                  <i class="fa-solid fa-star" style="color:#ffd700"></i>
+                </div>
+                <div class="family-info">
+                  <p class="family-relation">Younger Sister</p>
+                  <h3 class="family-name">Muntaha Tabassum</h3>
+                  <p class="family-detail">(Arshi) — My little sunshine</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <p class="footer-logo">gmanondo.</p>
+      <p class="footer-credit">
+        Built by <a href="https://github.com/synt4x-an0ndo" rel="noopener">G.M. Millat (Anondo)</a> · Dhaka, Bangladesh 🇧🇩
+      </p>
+    </footer>
+
+  </div><!-- .page-col -->
+
+  <div class="hatch-right"></div>
+</div><!-- .page-grid -->
+
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
@@ -235,6 +669,28 @@
     }
   ]
 }</script>
-<script src="site.js" defer></script>
+
+<script>
+// Scroll-triggered fade-in
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('.fade-up, .fade-up-sm').forEach(el => {
+  io.observe(el);
+});
+
+// Header border on scroll
+const hdr = document.getElementById('site-header');
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+</script>
+
 </body>
 </html>
